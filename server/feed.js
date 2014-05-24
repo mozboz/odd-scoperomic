@@ -1,7 +1,6 @@
 
 var feedPollingHandle;
-
-// "http://localhost/profile/index.php"
+var pollingInterval = 1000; // ms
 
 function startPolling(url, interval) {
     feedPollingHandle = Meteor.setInterval(
@@ -28,8 +27,14 @@ function validateProfileUrl(url) {
     }
 }
 
-// Logic that happens when user enters/changes their personal profile URL
+// Active profile interface abstracted here
+function getProfileAddUrl(url) {
+    return url + "/add.php";
+}
+
 Meteor.methods({
+
+    // Logic that happens when user enters/changes their personal profile URL
     updateUserProfileUrl: function (url) {
         if (!validateProfileUrl(url)) {
             return "INVALID";
@@ -38,8 +43,18 @@ Meteor.methods({
                 Meteor.clearInterval(feedPollingHandle);
             }
             Posts.remove({});
-            feedPollingHandle = startPolling(url, 1000);
+            feedPollingHandle = startPolling(url, pollingInterval);
             return "OK";
+        }
+    },
+
+    // When new status submitted
+    postToProfile: function (profileUrl, message) {
+        result = Meteor.http.call("POST", getProfileAddUrl(profileUrl), {params: {profileitem: message}});
+        if (result.statusCode == 200) {
+            return "OK";
+        } else {
+            return "FAIL";
         }
     }
 });
