@@ -1,0 +1,11 @@
+<template name="postsList">
+  <div class="posts">
+    {{#if posts.count}}
+        {{#each posts}}
+          {{> postItem}}
+        {{/each}}
+    {{else}}
+        Empty, click Setup to proceed
+    {{/if}}
+  </div>
+</template>
