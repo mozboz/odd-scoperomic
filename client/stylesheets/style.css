@@ -104,8 +104,20 @@ input {
 	color: blue;
 }
 
+.post {
+    font-family: OpenSans;
+    font-size: 18px;
+    color: #7D8188;
+}
 
-
+.error{
+    background: #FF9B9B;
+    padding: 5px;
+}
+.success{
+    background: #B8E986;
+    padding: 5px;
+}
 
 #spinner {
   height: 300px; }
