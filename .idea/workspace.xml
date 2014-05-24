@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="85c2c9b0-eee9-40f6-8bf5-2c08dab77903" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/includes/footer.html" afterPath="$PROJECT_DIR$/client/views/includes/footer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/feed.js" afterPath="$PROJECT_DIR$/server/feed.js" />
     </list>
     <ignored path="meteor test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,7 +82,7 @@
       <file leaf-file-name="footer.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/views/includes/footer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="0" selection-start="269" selection-end="269" vertical-scroll-proportion="0.11392405">
+            <state line="2" column="44" selection-start="79" selection-end="79" vertical-scroll-proportion="0.03797468">
               <folding />
             </state>
           </provider>
@@ -99,7 +100,7 @@
       <file leaf-file-name="feed.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/feed.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="109" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0">
+            <state line="14" column="22" selection-start="458" selection-end="458" vertical-scroll-proportion="-8.4">
               <folding />
             </state>
           </provider>
@@ -702,6 +703,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/feed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="22" selection-start="458" selection-end="458" vertical-scroll-proportion="-8.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/views/includes/footer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="20" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
@@ -709,16 +717,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/feed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="109" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/views/includes/footer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="269" selection-end="269" vertical-scroll-proportion="0.11392405">
+        <state line="2" column="44" selection-start="79" selection-end="79" vertical-scroll-proportion="0.03797468">
           <folding />
         </state>
       </provider>
