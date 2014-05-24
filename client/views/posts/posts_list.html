@@ -1,11 +1,11 @@
 <template name="postsList">
-  <div class="posts">
+    <ul>
     {{#if posts.count}}
-        {{#each posts}}
-          {{> postItem}}
+       {{#each posts}}
+            <li>{{> postItem}}</li>
         {{/each}}
     {{else}}
         Empty, click Setup to proceed
     {{/if}}
-  </div>
+    </ul>
 </template>

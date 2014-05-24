@@ -5,7 +5,6 @@
 
 insecure
 standard-app-packages
-bootstrap
 iron-router
 spin
 accounts-password
