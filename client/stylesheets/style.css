@@ -149,10 +149,12 @@ input {
 .error{
     background: #FF9B9B;
     padding: 5px;
+    margin-bottom: 5px;
 }
 .success{
     background: #B8E986;
     padding: 5px;
+    margin-bottom: 5px;
 }
 
 #spinner {
