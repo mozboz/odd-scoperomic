@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85c2c9b0-eee9-40f6-8bf5-2c08dab77903" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/includes/footer.html" afterPath="$PROJECT_DIR$/client/views/includes/footer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/feed.js" afterPath="$PROJECT_DIR$/server/feed.js" />
     </list>
     <ignored path="meteor test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="footer.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/views/includes/footer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="29" selection-start="65" selection-end="65" vertical-scroll-proportion="-1.875">
+            <state line="6" column="0" selection-start="269" selection-end="269" vertical-scroll-proportion="0.11392405">
               <folding />
             </state>
           </provider>
@@ -98,10 +96,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="feed.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="feed.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/feed.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="16" selection-start="921" selection-end="922" vertical-scroll-proportion="0.41958886">
+            <state line="35" column="109" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -178,9 +176,9 @@
         <option value="$PROJECT_DIR$/client/views/posts/post_item.js" />
         <option value="$PROJECT_DIR$/client/views/posts/post_submit.js" />
         <option value="$PROJECT_DIR$/client/views/includes/flibble.js" />
-        <option value="$PROJECT_DIR$/client/views/includes/footer.html" />
         <option value="$PROJECT_DIR$/client/views/includes/footer.js" />
         <option value="$PROJECT_DIR$/server/feed.js" />
+        <option value="$PROJECT_DIR$/client/views/includes/footer.html" />
       </list>
     </option>
   </component>
@@ -697,13 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/includes/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="29" selection-start="65" selection-end="65" vertical-scroll-proportion="-1.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/views/posts/post_submit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="74" selection-start="218" selection-end="284" vertical-scroll-proportion="0.0">
@@ -720,7 +711,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/feed.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="16" selection-start="921" selection-end="922" vertical-scroll-proportion="0.41958886">
+        <state line="35" column="109" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/includes/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="269" selection-end="269" vertical-scroll-proportion="0.11392405">
           <folding />
         </state>
       </provider>
