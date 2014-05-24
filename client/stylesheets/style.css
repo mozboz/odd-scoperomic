@@ -9,16 +9,6 @@
     outline: 0;
 }
 
-.clearfix:before, .clearfix:after {
-	content: " ";
-	display: table; }
-
-.clearfix:after {
-	clear: both; }
-
-.clearfix {
-	*zoom: 1; }
-
 html {
 	font-size: 16px; }
 
@@ -179,6 +169,16 @@ input {
 		width: 25%; }
 	.column.flow-opposite {
 		float: right; }
+
+    .clearfix:before, .clearfix:after {
+	content: " ";
+	display: table; }
+
+    .clearfix:after {
+        clear: both; }
+
+    .clearfix {
+        *zoom: 1; }
 }
 
 @media (min-width: 100rem) {
