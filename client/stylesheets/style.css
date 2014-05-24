@@ -82,9 +82,15 @@ header li:hover {
 }
 
 #headline {
-    background: #CBD7E5;
+    background: #E7ECF2;
     width: 100%;
     height: 400px;
+}
+#user {
+    font-family: OpenSans-Light;
+    font-size: 40px;
+    color: #1F3245;
+    line-height: 60px;
 }
 
 footer {
