@@ -29,8 +29,14 @@ function validateProfileUrl(url) {
     }
 }
 
-// Logic that happens when user enters/changes their personal profile URL
+// Active profile interface abstracted here
+function getProfileAddUrl(url) {
+    return url + "/add.php";
+}
+
 Meteor.methods({
+
+    // Logic that happens when user enters/changes their personal profile URL
     updateUserProfileUrl: function (url) {
         if (!validateProfileUrl(url)) {
             return "INVALID";
@@ -42,6 +48,16 @@ Meteor.methods({
             Posts.remove({});
             feedPollingHandle = startPolling(myProfileUrl, 1000);
             return "OK";
+        }
+    },
+
+    // When new status submitted
+    postToProfile: function (profileUrl, message) {
+        result = Meteor.http.call("POST", getProfileAddUrl(profileUrl), {params: {profileitem: message}});
+        if (result.statusCode == 200) {
+            return "OK";
+        } else {
+            return "FAIL";
         }
     }
 });
