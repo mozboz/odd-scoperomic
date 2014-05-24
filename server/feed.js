@@ -1,5 +1,6 @@
 
 var feedPollingHandle;
+myProfileUrl = "asd";
 
 // "http://localhost/profile/index.php"
 
@@ -37,8 +38,9 @@ Meteor.methods({
             if (feedPollingHandle) {
                 Meteor.clearInterval(feedPollingHandle);
             }
+            myProfileUrl = url;
             Posts.remove({});
-            feedPollingHandle = startPolling(url, 1000);
+            feedPollingHandle = startPolling(myProfileUrl, 1000);
             return "OK";
         }
     }
