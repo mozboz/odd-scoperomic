@@ -1,17 +1,10 @@
 <template name="postSubmit">
     <form>
-        <div class="control-group">
-            <label class="control-label" for="url">Your Profile URL</label>
-            <div class="controls">
-                <input name="myProfileUrl" class="input-url" type="text" value="{{myProfileUrl}}" placeholder="Your Profile URL..."/>
-                <button id="validate-my-profile">Validate</button>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="title">Profiles to subscribe to</label>
-            <div class="controls">
-                <input name="subscribeProfileUrl" class="input-url" type="text" value="{{subscribeProfileUrl}}" placeholder="Profile URL"/>
-            </div>
-        </div>
+        <label class="control-label" for="title">Your Profile URL</label><br>
+        <input name="myProfileUrl" class="input-url" type="text" value="{{myProfileUrl}}" placeholder="Your Profile URL..."/>
+        <button id="validate-my-profile">Validate</button><br>
+
+        <label class="control-label" for="title">Profiles to subscribe to</label><br>
+        <input name="subscribeProfileUrl" class="input-url" type="text" value="{{subscribeProfileUrl}}" placeholder="Profile URL"/>
     </form>
 </template>
