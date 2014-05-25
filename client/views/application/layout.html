@@ -1,8 +1,10 @@
 <template name="layout">
-  <div class="container">
-    <div id="main" class="row-fluid">
-      {{> yield}}
+    <div id="wrap">
+        <div class="container">
+            <div id="main" class="row-fluid">
+              {{> yield}}
+            </div>
+        </div>
     </div>
-  </div>
-  {{> footer}}
+    {{> footer}}
 </template>
