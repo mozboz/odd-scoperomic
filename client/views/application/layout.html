@@ -1,8 +1,8 @@
 <template name="layout">
     {{> header}}
-    {{> errors}}
-
-    {{> yield}}
-
+    <div id="content">
+        {{> errors}}
+        {{> yield}}
+    </div>
     {{> footer}}
 </template>

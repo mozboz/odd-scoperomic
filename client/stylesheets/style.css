@@ -10,6 +10,35 @@ body,html  {
     top: 0
 }
 
+a {
+    text-decoration: none;
+}
+
+a:link    { color: lightgrey; }
+a:visited { color: lightgrey; }
+
+h4 {
+    color: #fafafa;
+    font-weight: 300;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#content {
+    position: fixed;
+    top: 45px;
+    bottom: 65px;
+    overflow: scroll;
+    width: 100%;
+}
+
+.event {
+    padding: 5px;
+}
 
 #spinner {
   height: 300px; }
