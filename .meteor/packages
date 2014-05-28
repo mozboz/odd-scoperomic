@@ -5,9 +5,9 @@
 
 insecure
 standard-app-packages
-bootstrap
 iron-router
 spin
 accounts-password
 accounts-ui-bootstrap-dropdown
 http
+semantic-ui
