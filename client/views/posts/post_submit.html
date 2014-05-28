@@ -1,19 +1,26 @@
 <template name="postSubmit">
-    <form class="main">
-        <div class="control-group">
-            <label class="control-label" for="url">Your Profile URL</label>
-            <div class="controls">
-                <input name="myProfileUrl" class="input-url" type="text" value="{{myProfileUrl}}" placeholder="Your Profile URL..."/>
-                <button id="validate-my-profile">Validate</button>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="title">Profiles to subscribe to</label>
-            <div class="controls">
-                <input name="subscribeProfileUrl" class="input-url" type="text" value="{{subscribeProfileUrl}}" placeholder="Profile URL"/>
-            </div>
-        </div>
 
+<form class="ui fluid form">
 
-    </form>
+    <div class="inline field">
+        <div class="ui pointing below label">
+           Hook your Profile
+        </div>
+        <input name="myProfileUrl" type="text" value="{{myProfileUrl}}" placeholder="Your Profile Link"/>
+        <div class="ui small secondary button" id="validate-my-profile">Validate</div>
+    </div>
+
+  <div class="ui simple divider"></div>
+
+  <div class="inline field">
+    <div class="ui pointing below label">
+       Subscribe to Feed
+    </div>
+      <input name="subscribeProfileUrl" class="input-url" type="text" placeholder="HTTP://"/>
+        <div class="ui small secondary button" id="validate-my-profile">Subscribe</div>
+
+  </div>
+
+</form>
+
 </template>

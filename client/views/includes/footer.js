@@ -1,9 +1,3 @@
-Template.footer.helpers({
-    blibble: function() {
-        return "oh hai";
-    }
-});
-
 Template.footer.events({
     'keydown #wish': function(e) {
         if (e.which == 13) {

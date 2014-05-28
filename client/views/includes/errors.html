@@ -1,0 +1,22 @@
+<template name="errors">
+
+    {{#each errors}}
+        {{> error}}
+    {{/each}}
+
+</template>
+
+<template name="error">
+    <div class="ui info message">
+        {{message}}
+    </div>
+
+    <script type="text/javascript">
+        setTimeout(function(){
+            $('.message').fadeOut();
+        },2000);
+    </script>
+
+
+</template>
+

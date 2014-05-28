@@ -14,8 +14,9 @@ a {
     text-decoration: none;
 }
 
-a:link    { color: lightgrey; }
-a:visited { color: lightgrey; }
+a:link    { color: grey; }
+a:visited { color: grey; }
+a:hover { color: #4A4A4A ; }
 
 h4 {
     color: #fafafa;
@@ -28,12 +29,20 @@ header {
     width: 100%;
 }
 
+.errors {
+    position:absolute;
+    top:0;
+    z-index: 100;
+    width: 100%;
+}
+
 #content {
     position: fixed;
     top: 45px;
     bottom: 65px;
     overflow: scroll;
     width: 100%;
+    padding: 15px;
 }
 
 .event {
