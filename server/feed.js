@@ -9,7 +9,7 @@ function startPolling(interval) {
     feedPollingHandle = Meteor.setInterval(
         function() {
             for (var urlIndex=0; urlIndex < urls.length; urlIndex++) {
-                var url = urls[urlId];
+                var url = urls[urlIndex];
                 jsonData = Meteor.http.call("GET", url, {headers: {Accept: 'application/vnd.odd-profile.v1+json'}});
 
                 // console.log(jsonData.content);
