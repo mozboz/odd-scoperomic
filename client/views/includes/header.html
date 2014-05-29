@@ -1,10 +1,18 @@
 <template name="header">
     <header>
         <div class="ui teal inverted menu">
-          <a class="active item" href="{{pathFor 'postsList'}}">
-            <i class="home icon"></i> Your Name here
-          </a>
-          <a class="item">
+            <a class="active item" href="{{pathFor 'postsList'}}">
+                <i class="home icon"></i> Your Name here
+            </a>
+            <a class="item" href="{{pathFor 'postSubmit'}}">
+                <i class="setting icon"></i> Setup
+            </a>
+        </div>
+    </header>
+
+</template>
+
+ <!--<a class="item">
             <i class="users icon"></i> People
           </a>
           <a class="item">
@@ -18,11 +26,4 @@
           </a>
             <a class="item">
             <i class="certificate icon"></i> Wishes
-          </a>
-            <a class="item" href="{{pathFor 'postSubmit'}}">
-                  <i class="setting icon"></i> Setup
-            </a>
-        </div>
-    </header>
-
-</template>
+          </a>-->
