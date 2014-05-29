@@ -1,5 +1,5 @@
 body,html  {
-    color: #666666; 
+    color: #666666;
     height: 100%;
     margin: 0;
 }
@@ -31,9 +31,10 @@ header {
 
 .errors {
     position:absolute;
-    top:0;
+    bottom:48px;
     z-index: 100;
     width: 100%;
+    margin: 0;
 }
 
 #content {
