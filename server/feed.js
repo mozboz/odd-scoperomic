@@ -51,7 +51,6 @@ Meteor.methods({
 
     // This is where authentication step should be added
     updateUserProfileUrl: function (url) {
-        console.log("your user id is " + Meteor.userId());
         if (!validateProfileUrl(url)) {
             return "INVALID";
         } else {
