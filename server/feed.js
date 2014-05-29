@@ -7,21 +7,36 @@ function startPolling(url, interval) {
     feedPollingHandle = Meteor.setInterval(
         function() {
             jsonData = Meteor.http.call("GET", url, {headers: {Accept: 'application/vnd.odd-profile.v1+json'}});
-            console.log('polled');
+
             // console.log(jsonData.content);
             var json = JSON.parse(jsonData.content);
 
             for (var i in json.posts) {
-                console.log('json: ' + json.posts[i]);
+                // console.log('json: ' + json.posts[i]);
 
-                var post = JSON.parse(json.posts[i]);
-                    console.log(post);
+                var newPostText = "EMPTY POST TEXT";
+                var newPostUrl = "EMPTY URL";
+                try {
+                    var post = JSON.parse(json.posts[i]);
+                        console.log(post);
 
-                    console.log(post.title);
-                    console.log(post.url);
-                    if (Posts.find({title: post.title, url: post.url}).count() == 0) {
-                        Posts.insert({title: post.title, url: post.url});
-                    }
+                        if (typeof post.title != 'undefined') {
+                            newPostText = post.title;
+                        }
+
+                        if (typeof post.url != 'undefined') {
+                            newPostUrl = post.url;
+                        }
+
+
+                } catch (e) {
+                    // if exception parsing JSON, then post the whole string as a message
+                    newPostText = json.posts[i];
+                }
+
+                if (Posts.find({title: newPostText, url: newPostUrl}).count() == 0) {
+                    Posts.insert({title: newPostText, url: newPostUrl});
+                }
             }
         },
         interval);
