@@ -16,12 +16,6 @@ Template.postSubmit.events({
     }
 })
 
-// Subscription requests:
-
-// [ {url, status} ]
-
-// if all status not ok, then keep polling
-
 Template.postSubmit.helpers({
     myProfileUrl: function() {
         return SessionAmplify.get('myProfileUrl');
