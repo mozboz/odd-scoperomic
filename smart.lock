@@ -5,6 +5,7 @@
       "iron-router": {},
       "spin": {},
       "accounts-ui-bootstrap-dropdown": {},
+      "semantic-ui": {},
       "accounts-guest": {}
     },
     "packages": {
@@ -23,6 +24,11 @@
         "tag": "v0.8.3",
         "commit": "a7af8a52e4e74db020a69b158a8f992797b8b0b0"
       },
+      "semantic-ui": {
+        "git": "https://github.com/nooitaf/meteor-semantic-ui.git",
+        "tag": "v0.17.0",
+        "commit": "820b4a05267733aa8124ba6ebc5b88eaf93361c4"
+	  },
       "accounts-guest": {
         "git": "https://github.com/artwells/meteor-accounts-guest.git",
         "tag": "v0.0.6",

@@ -11,5 +11,6 @@ spin
 accounts-password
 accounts-ui-bootstrap-dropdown
 http
+semantic-ui
 session-amplify
 accounts-guest

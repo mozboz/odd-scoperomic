@@ -1,8 +1,11 @@
 <template name="postItem">
-  <div class="post">
-    <div class="post-content">
-      <h3><a href="{{url}}">{{title}}</a><span>{{name}}</span></h3>
+
+  <div class="item">
+    <img class="ui avatar image" src="sam.png">
+    <div class="content">
+        <div class="header">Name</div>
+        <a href="{{pathFor 'postPage'}}">{{title}}</a>
     </div>
-    <a href="{{pathFor 'postPage'}}" class="discuss btn">Discuss</a>
   </div>
+
 </template>

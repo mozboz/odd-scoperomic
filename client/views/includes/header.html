@@ -1,21 +1,29 @@
 <template name="header">
-  <header class="navbar">
-    <div class="navbar-inner">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-        <a class="brand" href="http://media-cache-ec0.pinimg.com/736x/42/ce/52/42ce529b0058b1329ffa12afae8cb6ed.jpg"><img src="http://www.clker.com/cliparts/t/p/n/T/1/u/running-man-with-microscope-md.png" width="25"></a>
-        <a class="brand" href="{{pathFor 'postsList'}}">Scoperomic</a>
-      <div class="nav-collapse collapse">
-          <ul class="nav">
-              <li><a href="{{pathFor 'postSubmit'}}">Setup</a></li>
-          </ul>
-          <ul class="nav pull-right">
-          <li>{{> loginButtons}}</li>
-        </ul>
-      </div>
-    </div>
-  </header>
+    <header>
+        <div class="ui teal inverted menu">
+            <a class="active item" href="{{pathFor 'postsList'}}">
+                <i class="home icon"></i> Your Name here
+            </a>
+            <a class="item" href="{{pathFor 'postSubmit'}}">
+                <i class="setting icon"></i> Setup
+            </a>
+        </div>
+    </header>
+
 </template>
+
+ <!--<a class="item">
+            <i class="users icon"></i> People
+          </a>
+          <a class="item">
+            <i class="map marker icon"></i> Places
+          </a>
+            <a class="item">
+            <i class="leaf icon"></i> Objects
+          </a>
+            <a class="item">
+            <i class="empty calendar icon"></i> Events
+          </a>
+            <a class="item">
+            <i class="certificate icon"></i> Wishes
+          </a>-->
