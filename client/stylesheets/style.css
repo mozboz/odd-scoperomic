@@ -17,10 +17,11 @@ a {
 a:link    { color: grey; }
 a:visited { color: grey; }
 a:hover { color: #4A4A4A ; }
-
-h4 {
-    color: #fafafa;
+h1 {
     font-weight: 300;
+    font-size: 30px;
+    margin: 0;
+    padding: 20px;
 }
 
 header {
@@ -38,11 +39,20 @@ header {
 
 #content {
     position: fixed;
-    top: 45px;
+    top: 42px;
     bottom: 65px;
     overflow: scroll;
     width: 100%;
-    padding: 15px;
+}
+#main {
+    padding: 20px;
+}
+
+.headline {
+    background: #f7f7f7;
+    width: 100%;
+    margin: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .event {
