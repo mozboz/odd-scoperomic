@@ -1,24 +1,32 @@
 Template.postSubmit.events({
     'click #validate-my-profile': function(e) {
         e.preventDefault();
-        url = ($("input[name=myProfileUrl]").val());
-        throwError('Checking profile URL: ' + url);
+        var url = ($("input[name=myProfileUrl]").val());
+        var oldUrl = SessionAmplify.get('myProfileUrl');
+        throwError('Setting profile URL: ' + url);
         Meteor.call("updateUserProfileUrl", url, function(error, result) {
             if (result == "OK") {
-                Session.set('myProfileUrl', url);
+                SessionAmplify.set('myProfileUrl', url);
                 throwError('Success. Updated your profile URL to: ' + url);
             } else {
-                throwError('Updating profile URL failed: ' + result);
+                $("input[name=myProfileUrl]").val(oldUrl);
+                throwError('Updating profile URL failed, reverting: ' + result);
             }
         });
     }
 })
 
+// Subscription requests:
+
+// [ {url, status} ]
+
+// if all status not ok, then keep polling
+
 Template.postSubmit.helpers({
     myProfileUrl: function() {
-        return Session.get('myProfileUrl');
+        return SessionAmplify.get('myProfileUrl');
     },
     subscribeProfileUrl: function() {
-        return "blibble";
+        return ;
     }
 });
