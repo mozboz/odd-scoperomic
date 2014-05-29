@@ -65,11 +65,6 @@ function validateProfileUrl(url) {
     return fut.wait();
 }
 
-// Active profile interface abstracted here
-function getProfileAddUrl(url) {
-    return url + "/add.php";
-}
-
 Meteor.methods({
 
     // Logic that happens when user enters/changes their personal profile URL
@@ -91,13 +86,35 @@ Meteor.methods({
 
     // When new status submitted
     postToProfile: function (profileUrl, message) {
-        var result = Meteor.http.call("POST", getProfileAddUrl(profileUrl), {params: {profileitem: message}});
+
+        var tries = 0;
+        do {
+            var result = Meteor.http.call("POST", profileUrl,
+                { params: {category: "posts", content: message},
+                    headers: {Accept: 'application/vnd.odd-profile.v1+json'}});
+
+            // Annoyingly might get a valid redirect here
+            // If so, update the URL and try one more time.
+
+            if(getRedirectUrl(result)) {
+                profileUrl = getRedirectUrl(result);
+            }
+
+        } while(++tries < 2);
+
         if (result.statusCode == 200) {
             return "OK";
         } else {
+            console.log(result);
             return "FAIL";
         }
     }
 });
 
-
+function getRedirectUrl(httpResult) {
+    if (httpResult.statusCode == 301 || httpResult.statusCode == 302) {
+        return httpResult.headers.location;
+    } else {
+        return false;
+    }
+}
