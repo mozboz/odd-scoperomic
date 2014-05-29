@@ -18,7 +18,7 @@ function startPolling(url, interval) {
                 var newPostUrl = "EMPTY URL";
                 try {
                     var post = JSON.parse(json.posts[i]);
-                        console.log(post);
+                        // console.log(post);
 
                         if (typeof post.title != 'undefined') {
                             newPostText = post.title;
