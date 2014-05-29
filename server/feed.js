@@ -1,6 +1,7 @@
 
 var feedPollingHandle;
-var pollingInterval = 1000; // ms
+var pollingInterval = 1000; // ms. How often to poll for changes on a remote API
+var feedCheckTimeout = 10000; // ms. How long to wait for a response when validating a profile URL
 
 function startPolling(url, interval) {
     feedPollingHandle = Meteor.setInterval(
@@ -8,8 +9,8 @@ function startPolling(url, interval) {
             allPosts = Meteor.http.call("GET", url);
             posts = allPosts.content.split("\n");
             for (i in posts) {
-                if (Posts.find({title: posts[i]}).count() == 0) {
-                    Posts.insert({title: posts[i]});
+                if (Posts.find({title: posts[i], url: url}).count() == 0) {
+                    Posts.insert({title: posts[i], url: url});
                 }
             }
         },
@@ -17,14 +18,26 @@ function startPolling(url, interval) {
 }
 
 // Check that profile URL is valid
-// For now just make sure that it returns 200
+// For now just make sure that it returns 200.
 function validateProfileUrl(url) {
+    var Future = Npm.require("fibers/future");
+    var fut = new Future();
     try {
-        httpResult = Meteor.http.call("GET", url, {timeout: 500});
-        return httpResult.statusCode == 200;
+        Meteor.http.call("GET", url, {timeout: feedCheckTimeout}, function(error, result) {
+            if (result && result.statusCode == 200) {
+                fut.return(true);
+            } else {
+                console.log("Call to " + url + " failed");
+                console.log(result);
+                console.log(error);
+                fut.return(false);
+            }
+        });
     } catch (e) {
-        return false;
+        console.log("Exception from http call");
+        fut.return(false);
     }
+    return fut.wait();
 }
 
 // Active profile interface abstracted here
@@ -35,7 +48,10 @@ function getProfileAddUrl(url) {
 Meteor.methods({
 
     // Logic that happens when user enters/changes their personal profile URL
+
+    // This is where authentication step should be added
     updateUserProfileUrl: function (url) {
+        console.log("your user id is " + Meteor.userId());
         if (!validateProfileUrl(url)) {
             return "INVALID";
         } else {
@@ -50,7 +66,7 @@ Meteor.methods({
 
     // When new status submitted
     postToProfile: function (profileUrl, message) {
-        result = Meteor.http.call("POST", getProfileAddUrl(profileUrl), {params: {profileitem: message}});
+        var result = Meteor.http.call("POST", getProfileAddUrl(profileUrl), {params: {profileitem: message}});
         if (result.statusCode == 200) {
             return "OK";
         } else {
@@ -58,3 +74,5 @@ Meteor.methods({
         }
     }
 });
+
+
