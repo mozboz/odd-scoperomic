@@ -1,18 +1,16 @@
 <template name="postSubmit">
 
-<div class="ui fluid form">
-
     <div id="main">
-        <form class="ui fluid form">
-              <div class="inline field">
-                  <div class="ui pointing right label">Hook your Profile</div>
-                  <input name="myProfileUrl" type="text" value="{{myProfileUrl}}" size="60" placeholder="Your Profile Link"/>
-                  <div class="ui small secondary button" id="validate-my-profile">Validate</div>
-              </div>
-        </form>
+        <h2>Hook your Profile</h2>
+
+        <input name="myProfileUrl" type="text" value="{{myProfileUrl}}" size="60" placeholder="Your Profile Link"/>
+        <button id="validate-my-profile">Validate</button>
+
+
+        <h2>Subscribe to Feed</h2>
+
+        <input name="subscribeProfileUrl" class="input-url" type="text" size="60" placeholder="HTTP://"/>
+        <button id="subscribe-to-feed">Subscribe</button>
     </div>
-
-</div>
-
 
 </template>

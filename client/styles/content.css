@@ -1,3 +1,10 @@
+.errors {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    background: lightblue;
+}
+
 .element {
     background: #fff;
 }
@@ -60,3 +67,27 @@
     justify-content: space-around;
     align-items: center;
 }
+
+button {
+    background: #fff;
+    color: #294257;
+    padding: 5px 14px;
+    border: none;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+button:hover {
+    color: #fff;
+	background: rgba(0, 128, 128, .6);
+}
+
+button:active {
+	position:relative;
+	top:1px;
+}
+
+textarea:focus, input:focus, button {
+    outline: 0;
+}
+
