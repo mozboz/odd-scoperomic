@@ -1,6 +1,6 @@
 #container {
 	position: fixed;
-	top: 1.8rem;
+	top: 5rem;
 	bottom: 2.65rem;
     right: 0;
 	overflow: scroll;
@@ -11,36 +11,16 @@
 header {
 	position: fixed;
 	top: 0;
-	background: #f7f7f7;
+	background: #fff;
 	border-right: 1px solid rgba(0,0,0,0.05);
 	overflow: hidden;
-	font-size: 0.8rem;
-	line-height: 1.8rem;
+	font-size: 1.5rem;
+	line-height: 5rem;
+    padding: 0 40px;
 	width: 100%;
-	padding: 0 0.4rem;
-	height: 1.8rem;
+	height: 5rem;
 	border-bottom: 1px solid rgba(0,0,0,0.05);
-	font-weight: 700;
-    text-transform: uppercase;
-}
-
-header li{
-  	display: inline;
-  	padding: 0 0.4rem;
-	color: rgba(0, 128, 128, .6);
-}
-
-header li:first-child{
-	color: #294257;
-	letter-spacing: 0.15rem;
-}
-
-header li:hover {
-	color: #294257;
-}
-
-.banner {
-    padding: 30px;
+	font-weight: 200;
 }
 
 .content {
@@ -53,7 +33,7 @@ header li:hover {
 }
 
 aside {
-    margin-bottom: 30px;
+
 }
 
 aside input {
@@ -83,10 +63,11 @@ footer input {
 	position: fixed;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
     padding: 10px;
     justify-content: flex-end;
 	top: 1.8rem;
-	bottom: 2.8rem;
+	bottom: 2.5rem;
 	left: -10rem;
 	width: 10rem;
 	z-index: 1000;

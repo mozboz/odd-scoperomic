@@ -1,9 +1,12 @@
 <template name="menuLeft">
 
     <div class="menu">
-        <div class="menuItem"><img src="icon1.png"></div>
-        <div class="menuItem"><img src="icon2.png"></div>
-        <div class="menuItem"><img src="icon3.png"></div>
+        <div class="menuItem"><span class="fontawesome-leaf"></span></div>
+        <div class="menuItem"><span class="fontawesome-calendar"></span></div>
+        <div class="menuItem"><span class="fontawesome-map-marker"></span></div>
+        <div class="menuItem"><span class="fontawesome-user"></span></div>
+        <div class="menuItem"><a href="{{pathFor 'postSubmit'}}"><span class="fontawesome-cogs"></span></a></div>
+        <div class="menuItem"><a href="{{pathFor 'postsList'}}"><span class="fontawesome-home"></span></a></div>
     </div>
 
 </template>

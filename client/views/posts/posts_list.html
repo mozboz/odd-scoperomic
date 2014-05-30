@@ -1,9 +1,5 @@
 <template name="postsList">
 
-    <div class="banner element">
-        Samuel Andert<br>
-        In love with avocado, tomato and olive oil
-    </div>
     <div class="content">
         <div class="main">
             {{#if posts.count}}
@@ -18,10 +14,11 @@
         </div>
 
         <aside class="element">
-            Subscribe to Feed
+            <h3>FOLLOW FEED</h3>
             <input name="subscribeProfileUrl" class="input-url" type="text" placeholder="HTTP://"/>
             <div id="subscribe-to-feed">Subscribe</div>
         </aside>
+
     </div>
 
 </template>
