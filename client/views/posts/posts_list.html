@@ -1,24 +1,31 @@
 <template name="postsList">
 
-    <div id="main">
-        {{#if posts.count}}
-        <form class="ui fluid form">
-            <div class="inline field">
-                <div class="ui pointing right label">Subscribe to Feed</div>
-                    <input name="subscribeProfileUrl" class="input-url" type="text" size="60" placeholder="HTTP://"/>
-                <div class="ui small secondary button" id="subscribe-to-feed">Subscribe</div>
-            </div>
-        </form>
+    <div class="banner element">
+        Samuel Andert<br>
+        In love with avocado, tomato and olive oil
+    </div>
+    <div class="content">
+        <div class="main">
+            {{#if posts.count}}
 
-        <div class="ui selection list">
-            {{#each posts}}
-                {{> postItem}}
-            {{/each}}
+                {{#each posts}}
+                    {{> postItem}}
+                {{/each}}
+
+            {{else}}
+                Empty, click Setup to proceed
+            {{/if}}
         </div>
 
-        {{else}}
-            Empty, click Setup to proceed
-        {{/if}}
+        <aside class="element">
+            Subscribe to Feed
+            <input name="subscribeProfileUrl" class="input-url" type="text" placeholder="HTTP://"/>
+            <div id="subscribe-to-feed">Subscribe</div>
+        </aside>
+    </div>
+
+    <div class="search element">
+        Searchbar
     </div>
 
 </template>

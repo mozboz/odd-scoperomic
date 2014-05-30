@@ -1,0 +1,27 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+/* fontawesome */
+[class*="fontawesome-"]:before {
+	font-family: 'FontAwesome', sans-serif; }
+
+html {
+	font-size: 16px; }
+
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	color: #294257;
+	font-weight: 300;
+	background: #F5F9F9;
+}
+
+ul, li, a {
+	text-decoration: none;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	color: rgba(0, 128, 128, .6);
+}
+
+p {
+	color: #fafafa;
+}
