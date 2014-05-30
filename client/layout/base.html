@@ -1,0 +1,23 @@
+<template name="base">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{name}}</title>
+</head>
+
+<body>
+	<input id="toggleLeft" name="toggleLeft" type="checkbox">
+	<label for="toggleLeft"><span class="fontawesome-reorder" style="color: black"></span></label>
+
+    <div class="errors">{{> errors}}</div>
+	<header>{{> header}}</header>
+
+	<!--<nav id="menuLeft">{{> menuLeft}}</nav>-->
+
+	<section id="container">
+		 {{> yield}}
+	</section>
+
+	<footer>{{> footer}}</footer>
+</body>
+
+</template>
