@@ -6,7 +6,7 @@ var feedCheckTimeout = 10000; // ms. How long to wait for a response when valida
 var urls = [];  // store all urls to poll
 
 function startPolling(interval) {
-    feedPollingHandle = Meteor.setInterval(
+    return Meteor.setInterval(
         function() {
             for (var urlIndex=0; urlIndex < urls.length; urlIndex++) {
                 var url = urls[urlIndex];
