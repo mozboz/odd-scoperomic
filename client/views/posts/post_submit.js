@@ -16,12 +16,9 @@ Template.postSubmit.events({
                 throwError('Updating profile URL failed, reverting: ' + result);
             }
         });
-    }
-})
+    },
 
-Template.home.events({
-
-    // Adding a new context. Attempt to add and report status. Always clear input box after.
+     // Adding a new context. Attempt to add and report status. Always clear input box after.
     'keydown #subscribeToContextUrl': function(e) {
         if (e.which == 13) {
             e.preventDefault();
@@ -38,6 +35,7 @@ Template.home.events({
         }
     }
 });
+
 
 Template.postSubmit.helpers({
     myProfileUrl: function() {
