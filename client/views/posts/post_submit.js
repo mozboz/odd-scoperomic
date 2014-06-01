@@ -19,7 +19,7 @@ Template.postSubmit.events({
     }
 })
 
-Template.homePage.events({
+Template.home.events({
 
     // Adding a new context. Attempt to add and report status. Always clear input box after.
     'keydown #subscribeToContextUrl': function(e) {

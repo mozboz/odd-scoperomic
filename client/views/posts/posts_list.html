@@ -1,23 +1,13 @@
 <template name="postsList">
 
-    <div class="content">
-        <div class="main">
-            {{#if posts.count}}
+    {{#if posts.count}}
 
-                {{#each posts}}
-                    {{> postItem}}
-                {{/each}}
+        {{#each posts}}
+            {{> postItem}}
+        {{/each}}
 
-            {{else}}
-                Empty, click Setup to proceed
-            {{/if}}
-        </div>
-
-        <aside class="element">
-
-        </aside>
-
-    </div>
-
+    {{else}}
+        Empty, click Setup to proceed
+    {{/if}}
 
 </template>
