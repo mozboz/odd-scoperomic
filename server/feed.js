@@ -3,40 +3,46 @@ var feedPollingHandle;
 var pollingInterval = 2500; // ms. How often to poll for changes on a remote API
 var feedCheckTimeout = 10000; // ms. How long to wait for a response when validating a profile URL
 
-function startPolling(url, interval) {
-    feedPollingHandle = Meteor.setInterval(
+var urls = [];  // store all urls to poll
+
+function startPolling(interval) {
+    return Meteor.setInterval(
         function() {
-            jsonData = Meteor.http.call("GET", url, {headers: {Accept: 'application/vnd.odd-profile.v1+json'}});
+            for (var urlIndex=0; urlIndex < urls.length; urlIndex++) {
+                var url = urls[urlIndex];
+                jsonData = Meteor.http.call("GET", url, {headers: {Accept: 'application/vnd.odd-profile.v1+json'}});
 
-            // console.log(jsonData.content);
-            var json = JSON.parse(jsonData.content);
+                // console.log(jsonData.content);
+                var json = JSON.parse(jsonData.content);
 
-            for (var i in json.posts) {
-                // console.log('json: ' + json.posts[i]);
+                for (var i in json.posts) {
+                    // console.log('json: ' + json.posts[i]);
 
-                var newPostText = "EMPTY POST TEXT";
-                var newPostUrl = "EMPTY URL";
-                try {
-                    var post = JSON.parse(json.posts[i]);
-                        // console.log(post);
+                    var newPostText = "EMPTY POST TEXT";
+                    var newPostUrl = "EMPTY URL";
+                    try {
+                        var post = JSON.parse(json.posts[i]);
+                            // console.log(post);
 
-                        if (typeof post.title != 'undefined') {
-                            newPostText = post.title;
-                        }
+                            if (typeof post.title != 'undefined') {
+                                newPostText = post.title;
+                            }
 
-                        if (typeof post.url != 'undefined') {
-                            newPostUrl = post.url;
-                        }
+                            if (typeof post.url != 'undefined') {
+                                newPostUrl = post.url;
+                            }
 
 
-                } catch (e) {
-                    // if exception parsing JSON, then post the whole string as a message
-                    newPostText = json.posts[i];
+                    } catch (e) {
+                        // if exception parsing JSON, then post the whole string as a message
+                        newPostText = json.posts[i];
+                    }
+
+                    if (Posts.find({title: newPostText, postUrl: newPostUrl, source: url}).count() == 0) {
+                        Posts.insert({title: newPostText, postUrl: newPostUrl, source: url});
+                    }
                 }
-
-                if (Posts.find({title: newPostText, url: newPostUrl}).count() == 0) {
-                    Posts.insert({title: newPostText, url: newPostUrl});
-                }
+                console.log("polled " + url);
             }
         },
         interval);
@@ -65,23 +71,35 @@ function validateProfileUrl(url) {
     return fut.wait();
 }
 
+function addPollingUrl(url) {
+    if (!validateProfileUrl(url)) {
+        return "INVALID";
+    } else {
+        if (!feedPollingHandle) {
+            feedPollingHandle = startPolling(pollingInterval);
+        }
+        Posts.remove({});
+        urls.push(url);
+        console.log("added " + url + " to polling urls");
+        console.log("now polling " + urls.length + " items");
+        return "OK";
+    }
+}
+
 Meteor.methods({
 
     // Logic that happens when user enters/changes their personal profile URL
 
+    // @todo profile URL handling will eventually include other functionality
+
     // This is where authentication step should be added
     updateUserProfileUrl: function (url) {
-        console.log("your user id is " + Meteor.userId());
-        if (!validateProfileUrl(url)) {
-            return "INVALID";
-        } else {
-            if (feedPollingHandle) {
-                Meteor.clearInterval(feedPollingHandle);
-            }
-            Posts.remove({});
-            feedPollingHandle = startPolling(url, pollingInterval);
-            return "OK";
-        }
+        // console.log("your user id is " + Meteor.userId());
+        return addPollingUrl(url);
+    },
+
+    subscribeToContext: function (url) {
+        return addPollingUrl(url);
     },
 
     // When new status submitted
