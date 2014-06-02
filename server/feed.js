@@ -102,9 +102,8 @@ Meteor.methods({
 
         var tries = 0;
         do {
-            post = {content: content, type: type};
             var result = Meteor.http.call("POST", profileUrl,
-                { params: {category: type, content: JSON.stringify(post) },
+                { params: {category: type, content: content },
                     headers: {Accept: 'application/vnd.odd-profile.v1+json'}});
 
             // Annoyingly might get a valid redirect here
