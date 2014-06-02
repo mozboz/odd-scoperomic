@@ -4,7 +4,7 @@ Template.footer.events({
             e.preventDefault();
             var msg = $("#wish").val();
             throwError('Submitting to profile: ' + msg);
-            profileAdd("objects", createObject("objects", {content: msg}));
+            profileAdd("objects", msg);
         }
     }
 });
