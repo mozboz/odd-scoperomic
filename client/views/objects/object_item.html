@@ -1,5 +1,11 @@
 <template name="objectItem">
 
-    {{oid}} | {{name}} | {{creator}}
+    <div class="postItem">
+        <div class="avatar"><img src="/sam.png"></div>
+        <div class="postContent">
+            <div class="postAuthor" style="font-size: 14px;">{{creator}} <span>{{oid}}</span></div>
+            <a href="{{pathFor 'postPage'}}">{{name}}</a>
+        </div>
+    </div>
 
 </template>
