@@ -6,10 +6,23 @@ Template.footer.events({
             throwError('Submitting to profile: ' + msg);
             // profileAdd("objects", msg);
             profileAdd("objects", JSON.stringify( {
-            	"oid": "100#0", 
+            	"oid": guid () + "#0", 
             	"creator": "http://samuelandert.com/samuel", 
-            	"name": "Samuel"        	
+            	"name": msg        	
             }));
         }
     }
 });
+
+var guid = (function() {
+	  function s4() {
+	    return Math.floor((1 + Math.random()) * 0x10000)
+	               .toString(16)
+	               .substring(1);
+	  }
+	  return function() {
+	    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+	           s4() + '-' + s4() + s4() + s4();
+	  };
+	})();
+ 
