@@ -3,14 +3,31 @@
 <div class="ui fluid form">
 
     <div id="main">
-        <form class="ui fluid form">
+        <div class="ui fluid form">
               <div class="inline field">
                   <div class="ui pointing right label">Hook your Profile</div>
                   <input name="myProfileUrl" type="text" value="{{myProfileUrl}}" size="60" placeholder="Your Profile Link"/>
                   <div class="ui small secondary button" id="validate-my-profile">Validate</div>
               </div>
-        </form>
+
+                <div class="inline field">
+                    <div class="ui pointing right label">Subscribe to Context</div>
+                    <input id="subscribeToContextUrl" class="input-url" type="text" size="60" placeholder="Add a new context..."/>
+                    <div class="ui small secondary button" id="subscribe-to-context">Subscribe</div>
+                </div>
+
+                <div class="inline field">
+                    <div class="ui pointing right label">Create Context<br>
+                    Name: <input id="createContext" class="input-url" type="text" size="60" placeholder="Context name"/><br />
+                    Type: <input id="createContext2" class="input-url" type="text" size="60" placeholder=""/>
+                                                                       </div>
+                    <div class="ui small seceondary button" id="create-context">Create</div>
+                </div>
+
+        </div>
+
     </div>
+
 
 </div>
 
