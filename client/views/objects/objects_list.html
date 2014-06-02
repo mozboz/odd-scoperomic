@@ -1,13 +1,16 @@
 <template name="objectsList">
-<h1>objectsList</h1>
-    {{#if objects.count}}
 
-        {{#each objects}}
-            {{> objectItem}}
-        {{/each}}
+<div class="main">
+    <h1>objectsList</h1>
+        {{#if objects.count}}
 
-    {{else}}
-        Empty, click Setup to proceed
-    {{/if}}
+            {{#each objects}}
+                {{> objectItem}}
+            {{/each}}
+
+        {{else}}
+            Empty, click Setup to proceed
+        {{/if}}
+</div>
 
 </template>
