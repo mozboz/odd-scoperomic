@@ -24,7 +24,7 @@ header {
     bottom: 3rem;
     right: 420px;
     padding: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 aside {
@@ -34,7 +34,7 @@ aside {
     bottom: 3rem;
     padding: 20px;
     width: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 aside input {
@@ -64,7 +64,7 @@ footer input {
 	position: fixed;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: auto;
     padding: 10px;
     justify-content: flex-end;
 	top: 3.5rem;
