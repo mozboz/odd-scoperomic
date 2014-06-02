@@ -9,3 +9,5 @@ Template.objectsList.helpers({
         return Objects.find();
     }
 });
+
+Meteor.subscribe("objects");
