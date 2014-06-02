@@ -13,36 +13,31 @@ function startPolling(interval) {
                 jsonData = Meteor.http.call("GET", url, {headers: {Accept: 'application/vnd.odd-profile.v1+json'}});
 
                 // console.log(jsonData.content);
-                var json = JSON.parse(jsonData.content);
+                try {
+                    var json = JSON.parse(jsonData.content);
 
-                for (var i in json.posts) {
-                    // console.log('json: ' + json.posts[i]);
+                    for (var i in json.objects) {
+                        // console.log('json: ' + json.posts[i]);
 
-                    var newPostText = "EMPTY POST TEXT";
-                    var newPostUrl = "EMPTY URL";
-                    try {
-                        var post = JSON.parse(json.posts[i]);
-                            // console.log(post);
+                    	var object = null;
 
-                            if (typeof post.title != 'undefined') {
-                                newPostText = post.title;
-                            }
+                        try {
+                            object = JSON.parse(json.objects[i]);
+                            
+                        } catch (e) {
+                            // if exception parsing JSON, then post the whole string as a message
+                            newPostText = json.objects[i];
+                        }
 
-                            if (typeof post.url != 'undefined') {
-                                newPostUrl = post.url;
-                            }
-
-
-                    } catch (e) {
-                        // if exception parsing JSON, then post the whole string as a message
-                        newPostText = json.posts[i];
+                        if (Objects.find({oid: object.oid}).count() == 0) {
+                            Objects.insert(object);
+                        }
                     }
-
-                    if (Posts.find({title: newPostText, postUrl: newPostUrl, source: url}).count() == 0) {
-                        Posts.insert({title: newPostText, postUrl: newPostUrl, source: url});
-                    }
+                    console.log("polled " + url);
+                } catch (e) {
+                    console.log("json error in whole file at " + url);
                 }
-                console.log("polled " + url);
+
             }
         },
         interval);
@@ -103,12 +98,13 @@ Meteor.methods({
     },
 
     // When new status submitted
-    postToProfile: function (profileUrl, message) {
+    postToProfile: function (profileUrl, type, content) {
 
         var tries = 0;
         do {
+            post = {content: content, type: type};
             var result = Meteor.http.call("POST", profileUrl,
-                { params: {category: "posts", content: message},
+                { params: {category: type, content: JSON.stringify(post) },
                     headers: {Accept: 'application/vnd.odd-profile.v1+json'}});
 
             // Annoyingly might get a valid redirect here
@@ -116,6 +112,8 @@ Meteor.methods({
 
             if(getRedirectUrl(result)) {
                 profileUrl = getRedirectUrl(result);
+            } else {
+                tries++;
             }
 
         } while(++tries < 2);
