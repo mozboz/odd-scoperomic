@@ -16,32 +16,21 @@ function startPolling(interval) {
                 try {
                     var json = JSON.parse(jsonData.content);
 
-                    for (var i in json.posts) {
+                    for (var i in json.objects) {
                         // console.log('json: ' + json.posts[i]);
 
-                        var newPostText = "EMPTY POST TEXT";
-                        var newPostUrl = "EMPTY URL";
+                    	var object = null;
 
                         try {
-                            var post = JSON.parse(json.posts[i]);
-                                // console.log(post);
-
-                                if (typeof post.title != 'undefined') {
-                                    newPostText = post.title;
-                                }
-
-                                if (typeof post.url != 'undefined') {
-                                    newPostUrl = post.url;
-                                }
-
-
+                            object = JSON.parse(json.objects[i]);
+                            
                         } catch (e) {
                             // if exception parsing JSON, then post the whole string as a message
-                            newPostText = json.posts[i];
+                            newPostText = json.objects[i];
                         }
 
-                        if (Posts.find({title: newPostText, postUrl: newPostUrl, source: url}).count() == 0) {
-                            Posts.insert({title: newPostText, postUrl: newPostUrl, source: url});
+                        if (Objects.find({oid: object.oid}).count() == 0) {
+                            Objects.insert(object);
                         }
                     }
                     console.log("polled " + url);
