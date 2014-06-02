@@ -1,3 +1,4 @@
+/*
 if (Objects.find().count() === 0) {
     Objects.insert({
         oid: '1#0',
@@ -5,4 +6,4 @@ if (Objects.find().count() === 0) {
         name: 'Samuel'
     });
 }
-
+*/
