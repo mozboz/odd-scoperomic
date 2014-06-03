@@ -7,6 +7,8 @@
 
 .element {
     background: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .postItem {
@@ -18,10 +20,6 @@
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 1.2px;
-}
-
-.postItem .avatar{
-
 }
 
 .postItem img {
