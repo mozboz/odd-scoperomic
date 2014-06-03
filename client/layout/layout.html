@@ -1,22 +1,23 @@
-
 <template name="layout">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{{name}}</title>
-</head>
 
-<body>
-    <div class="container">
-        <input id="toggleLeft" name="toggleLeft" type="checkbox">
-        <label for="toggleLeft"><span class="fontawesome-reorder"></span></label>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{name}}</title>
+    </head>
 
-        <div class="errors">{{> errors}}</div>
-        <header>{{> header}}</header>
-        <nav id="menuLeft">{{> menuLeft}}</nav>
+    <body>
+        <div class="container">
+            <input id="toggleLeft" name="toggleLeft" type="checkbox">
+            <label for="toggleLeft"><span class="fontawesome-reorder"></span></label>
 
-        {{> yield}}
+            <div class="errors">{{> errors}}</div>
+            <header>{{> header}}</header>
+            <nav id="menuLeft">{{> menuLeft}}</nav>
 
-        <footer>{{> footer}}</footer>
-    </div>
-</body>
+            {{> yield}}
+
+            <footer>{{> footer}}</footer>
+        </div>
+    </body>
+
 </template>
