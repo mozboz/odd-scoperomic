@@ -1,5 +1,6 @@
 <template name="objectPage">
 
+	{{#with object}}
     <div class="main">
 
         <h2>Add relations</h2>
@@ -8,8 +9,8 @@
             <input type="text" id="value" placeholder="value">
             <button id="add-attribute-to-object">Add</button>
         </div>
-
         <h2>System</h2>
+        
         {{#each fixed}}
             <div class="element">
             	<span>{{key}}</span>:
@@ -33,5 +34,6 @@
         <h2>Select from Objects</h2>
         <div class="element"></div>
     </aside>
+	{{/with}}
 
 </template>
