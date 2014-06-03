@@ -3,3 +3,9 @@ Template.objectPage.events({
 
     }
 });
+
+Template.objectPage.helpers({
+    objects: function() {
+        return Objects.find();
+    }
+});

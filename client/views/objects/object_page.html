@@ -21,7 +21,11 @@
 
     <aside>
         <h2>Select from Objects</h2>
-        <div class="element"></div>
+
+        {{#each objects}}
+            <div class="element"> {{name}} </div>
+        {{/each}}
+
     </aside>
 
 </template>
