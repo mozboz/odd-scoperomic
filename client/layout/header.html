@@ -1,3 +1,10 @@
 <template name="header">
-    Me | {{name}}
+	{{#with object.obj}}
+    <img id="me" src="{{creator}}/profile.png" style="position: absolute; top: 0; left: 0; width: 77px; height: 77px">
+
+    <div class="title">
+        <h1>{{name}}</h1>
+        <div id="oid">{{oid}}</div>
+    </div>
+	{{/with}}
 </template>

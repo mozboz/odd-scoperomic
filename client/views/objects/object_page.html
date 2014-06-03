@@ -9,17 +9,8 @@
             <input type="text" id="value" placeholder="value">
             <button id="add-attribute-to-object">Add</button>
         </div>
-        <h2>System</h2>
-        
-        {{#each fixed}}
-            <div class="element">
-            	<span>{{key}}</span>:
-            	<span>{{value}}</span>
-            </div>
-        {{/each}}
-
-
         <h2>Attributes</h2>
+
         {{#each variable}}
             <div class="element">
             	<input type="text" value="{{key}}" />:
@@ -29,11 +20,15 @@
 
     </div>
 
+	{{/with}}
 
     <aside>
         <h2>Select from Objects</h2>
-        <div class="element"></div>
+
+        {{#each objects}}
+            <div class="element"> {{name}} </div>
+        {{/each}}
+
     </aside>
-	{{/with}}
 
 </template>
