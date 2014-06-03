@@ -4,10 +4,9 @@ Template.footer.events({
             e.preventDefault();
             var msg = $("#wish").val();
             throwError('Submitting to profile: ' + msg);
-            // profileAdd("objects", msg);
             profileAdd("objects", JSON.stringify( {
             	"oid": guid () + "#0", 
-            	"creator": "http://samuelandert.com/samuel", 
+            	"creator": SessionAmplify.get(PROFILE_KEY), 
             	"name": msg        	
             }));
         }
