@@ -9,9 +9,10 @@
         </div>
 
         <h2>Attributes</h2>
-        <div class="element">oid : {{oid}}</div>
-        <div class="element">name : {{name}}</div>
-        <div class="element">creator : {{creator}}</div>
+
+        {{#each this}}
+            <span>{{key}}</span> : <span>{{value}}</span>
+        {{/each}}
 
     </div>
 
