@@ -2,16 +2,21 @@ Template.objectPage.events(
 {
 	'click #add-attribute-to-object' : function(e)
 	{
-		loadObjectByOid("99612b47-41ab-5adc-83ab-6a203ad6c2ad#0");
+		this.obj[jQuery("#key").val()] = jQuery("#value").val();
+		storeObject(this.obj);
 	}
 });
 
 Template.objectPage.helpers(
 {
+	/**
+	 * Supplies the autocomplete list with data.
+	 */
 	objects : function()
 	{
 		return Objects.find();
 	},
+	
 	/**
 	 * Takes a object and returns a view representation of it.
 	 * 
@@ -21,7 +26,7 @@ Template.objectPage.helpers(
 	 *          the fixed values of the object variable:array are the user
 	 *          changeable values
 	 */
-	object : function()
+	detail : function()
 	{
 		var fixed =
 		[];
@@ -30,29 +35,19 @@ Template.objectPage.helpers(
 
 		for (propertyName in this)
 		{
-
 			var propertyValue = this[propertyName];
 			if (propertyName == "_id")
 				continue;
 
-			jQuery.inArray(propertyName,
-			[ "oid", "name", "creator" ]) >= 0
-
-			? fixed.push(
-			{
-				key : propertyName,
-				value : propertyValue
-			}) : variable.push(
-			{
-				key : propertyName,
-				value : propertyValue
-			});
+			jQuery.inArray(propertyName, [ "oid", "name", "creator" ]) >= 0
+			? fixed.push({ key : propertyName, value : propertyValue }) 
+			: variable.push({ key : propertyName, value : propertyValue });
 		}
 
-		return {
+		return ({
 			obj : this,
 			fixed : fixed,
 			variable : variable
-		};
+		});
 	}
 });

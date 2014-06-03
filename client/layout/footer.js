@@ -4,11 +4,9 @@ Template.footer.events({
             e.preventDefault();
             var msg = $("#wish").val();
             throwError('Submitting to profile: ' + msg);
-            profileAdd("objects", JSON.stringify( {
-            	"oid": guid () + "#0", 
-            	"creator": SessionAmplify.get(PROFILE_KEY), 
+            storeObject({
             	"name": msg        	
-            }));
+            });
         }
     }
 });

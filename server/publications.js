@@ -5,3 +5,7 @@ Meteor.publish('posts', function() {
 Meteor.publish('objects', function() {
   return Objects.find();
 });
+
+Meteor.publish('supportObjects', function() {
+  return SupportObjects.find();
+});
