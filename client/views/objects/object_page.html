@@ -9,6 +9,9 @@
         </div>
 
         <h2>Attributes</h2>
+        {{#each this}}
+        <span>{{key}}</span> : <span>{{value}}</span>
+        {{/each}}
         <div class="element">was born in : munich</div>
         <div class="element">birthday : 1989</div>
     </div>
