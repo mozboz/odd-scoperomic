@@ -99,3 +99,17 @@ textarea:focus, input:focus, button {
     outline: 0;
 }
 
+#oid {
+    color: lightgrey;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.title {
+    padding: 5px 18px;
+    margin-left: 77px;
+}
+
+.title h1 {
+    font-size: 32px;
+}

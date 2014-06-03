@@ -1,3 +1,10 @@
 <template name="header">
-    Me | {{name}}
+
+    <img id="me" src="{{obj.creator}}/profile.png" style="position: absolute; top: 0; left: 0; width: 77px; height: 77px">
+
+    <div class="title">
+        <h1>{{obj.name}}</h1>
+        <div id="oid">{{obj.oid}}</div>
+    </div>
+
 </template>
