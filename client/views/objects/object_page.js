@@ -23,7 +23,6 @@ Template.objectPage.helpers(
 	{
 		return Objects.find();
 	},
-	
 	/**
 	 * Takes a object and returns a view representation of it.
 	 * 

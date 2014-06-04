@@ -3,7 +3,9 @@
     <div class="postItem">
         <div class="avatar"><img src="{{creator}}/profile.png"></div>
         <div class="postContent">
-            <div class="postAuthor" style="font-size: 14px;">{{creator}} <span>{{id}}#{{rev}}</span></div>
+            <div class="postAuthor" style="font-size: 14px;">{{creator}} <span class="">{{id}}#{{rev}}</span>
+            	<a style="float:right; cursor:pointer;" class="derive-from-object">Derive new object</a>
+            </div>
             <a href="{{pathFor 'objectPage'}}">{{name}}</a>
         </div>
     </div>
