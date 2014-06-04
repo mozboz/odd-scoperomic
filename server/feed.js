@@ -31,12 +31,31 @@ function startPolling(interval) {
 
                         if (Objects.find({oid: object.oid}).count() == 0) {
                         	
+                        	object._current = true;
+                        	
                             Objects.insert(object, function(error, _id) {
 
                             	if (_id == false) {
                             		// error, this shouldn't happen. The insert of the object failed so we better do not update any links.
                             		throw "The insert of a new object from the profile failed! reason: " + error;
-                            	}                            	
+                            	}
+                            	
+                                originalOidParts = parseOid(object.oid);
+                                if (typeof originalOidParts.rev == "undefined" || originalOidParts.rev == null || originalOidParts.rev == 0)
+                                	return;
+                            	
+                                var previousObj = Objects.findOne({
+                            		oid:createOid(originalOidParts.id, originalOidParts.rev - 1)
+                            	});
+                                
+                                Objects.update(previousObj, {
+                            		$set: {
+                            			_current : false
+                            		}
+                            	});
+                                
+                            });
+                            	/*
                             	
                                 originalOidParts = parseOid(object.oid);
                             	console.log("-> looking for supportObject (id:" + originalOidParts.id + ", _id:" + _id + ")");
@@ -65,6 +84,7 @@ function startPolling(interval) {
                                 	console.log("-> updated supportObject");
                                 }
                             }); 
+                                */
                                                    
                         }
                     }
