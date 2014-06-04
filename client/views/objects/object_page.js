@@ -34,10 +34,8 @@ Template.objectPage.helpers(
 	 */
 	detail : function()
 	{
-		var fixed =
-		[];
-		var variable =
-		[];
+		var fixed = [];
+		var variable = [];
 
 		for (propertyName in this)
 		{
@@ -45,7 +43,7 @@ Template.objectPage.helpers(
 			if (propertyName == "_id")
 				continue;
 
-			jQuery.inArray(propertyName, [ "id", "rev", "creator", "isCurrent", "name" ]) >= 0
+			isSystemField(propertyName)
 			? fixed.push({ key : propertyName, value : propertyValue }) 
 			: variable.push({ key : propertyName, value : propertyValue });
 		}
