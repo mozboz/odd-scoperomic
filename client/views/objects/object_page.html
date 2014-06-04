@@ -1,6 +1,10 @@
 <template name="objectPage">
 
 	{{#with detail}}
+
+	<input type="hidden" id="id" value="{{obj.id}}" />
+	<input type="hidden" id="rev" value="{{obj.rev}}" />
+ 
     <div class="main">
 
         <h2>Add relations</h2>
@@ -13,8 +17,8 @@
 
         {{#each variable}}
             <div class="element">
-            	<input type="text" value="{{key}}" />:
-            	<input type="text" value="{{value}}" />
+            	<input type="text" value="{{key}}" readonly="readonly" id="{{key}}_key" />:
+            	<input type="text" value="{{value}}" class="value-editor" id="{{key}}_editor" />
             </div>
         {{/each}}
 

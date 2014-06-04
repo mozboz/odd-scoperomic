@@ -11,6 +11,21 @@ Template.objectPage.events(
 		}
 		this.obj[key] = val;
 		storeObject(this.obj);
+	},
+	
+	'keyup .value-editor' : function(e) {
+        if (e.which != 13) 
+        	return;
+        
+        e.preventDefault();
+
+        var editorId = jQuery(e.currentTarget).attr("id");
+        var key = editorId.split("_")[0];        
+		
+		var objToUpdate = loadObject(jQuery("#id").val(), parseInt(jQuery("#rev").val()));
+		objToUpdate[key] = jQuery(e.currentTarget).val().trim();
+		
+		storeObject(objToUpdate);
 	}
 });
 
