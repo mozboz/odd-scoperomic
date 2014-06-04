@@ -46,7 +46,7 @@ Template.objectPage.helpers(
 			if (propertyName == "_id")
 				continue;
 
-			jQuery.inArray(propertyName, [ "oid", "name", "creator" ]) >= 0
+			jQuery.inArray(propertyName, [ "id", "rev", "creator", "isCurrent", "name" ]) >= 0
 			? fixed.push({ key : propertyName, value : propertyValue }) 
 			: variable.push({ key : propertyName, value : propertyValue });
 		}

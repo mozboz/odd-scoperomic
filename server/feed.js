@@ -31,7 +31,7 @@ function startPolling(interval) {
 
                         if (Objects.find({id: object.id, rev: object.rev}).count() == 0) {
                         	
-                        	object._current = true;
+                        	object.isCurrent = true;
                         	
                             Objects.insert(object, function(error, _id) {
 
@@ -47,7 +47,7 @@ function startPolling(interval) {
                                 
                                 Objects.update(previousObj, {
                             		$set: {
-                            			_current : false
+                            			isCurrent : false
                             		}
                             	});
                                 
