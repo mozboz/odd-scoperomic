@@ -29,7 +29,7 @@ function startPolling(interval) {
                             newPostText = json.objects[i];
                         }
 
-                        if (Objects.find({oid: object.oid}).count() == 0) {
+                        if (Objects.find({id: object.id, rev: object.rev}).count() == 0) {
                         	
                         	object._current = true;
                         	
@@ -41,7 +41,8 @@ function startPolling(interval) {
                             	}
                             	
                                 var previousObj = Objects.findOne({
-                            		oid:createOid(object.id, object.rev - 1)
+                            		id:object.id, 
+                            		rev: object.rev - 1
                             	});
                                 
                                 Objects.update(previousObj, {

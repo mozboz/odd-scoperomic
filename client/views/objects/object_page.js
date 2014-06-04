@@ -2,7 +2,14 @@ Template.objectPage.events(
 {
 	'click #add-attribute-to-object' : function(e)
 	{
-		this.obj[jQuery("#key").val()] = jQuery("#value").val();
+		var key = jQuery("#key").val().trim();
+		var val = jQuery("#value").val().trim();
+		
+		if (typeof this.obj[key] != "undefined") {
+			alert("You can not change the keys of an object. Instead, add new ones.");
+			return;
+		}
+		this.obj[key] = val;
 		storeObject(this.obj);
 	}
 });
