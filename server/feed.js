@@ -40,12 +40,8 @@ function startPolling(interval) {
                             		throw "The insert of a new object from the profile failed! reason: " + error;
                             	}
                             	
-                                originalOidParts = parseOid(object.oid);
-                                if (typeof originalOidParts.rev == "undefined" || originalOidParts.rev == null || originalOidParts.rev == 0)
-                                	return;
-                            	
                                 var previousObj = Objects.findOne({
-                            		oid:createOid(originalOidParts.id, originalOidParts.rev - 1)
+                            		oid:createOid(object.id, object.rev - 1)
                             	});
                                 
                                 Objects.update(previousObj, {
@@ -54,38 +50,7 @@ function startPolling(interval) {
                             		}
                             	});
                                 
-                            });
-                            	/*
-                            	
-                                originalOidParts = parseOid(object.oid);
-                            	console.log("-> looking for supportObject (id:" + originalOidParts.id + ", _id:" + _id + ")");
-                                
-                                var supportObject = SupportData.findOne({
-                                	id:originalOidParts.id
-                                });
-                                
-                                console.log(supportObject);
-                                
-                                if (typeof supportObject == "undefined" || supportObject == null) {
-                                	console.log("-> creating supportObject");
-                                	supportObject = {
-                                		id : originalOidParts.id,
-                                		mongoId : _id
-                                	};
-                                	supportObject = SupportData.insert(supportObject);
-                                	console.log("-> created supportObject");
-                                } else {
-                                	console.log("-> updating supportObject (id:" + supportObject.id + ", mongoId:" + _id + ")");
-                                	SupportData.update(supportObject, {
-                                		$set: {
-                                			mongoId : _id
-                                		}
-                                	});
-                                	console.log("-> updated supportObject");
-                                }
-                            }); 
-                                */
-                                                   
+                            });                                                   
                         }
                     }
                     console.log("polled " + url);
