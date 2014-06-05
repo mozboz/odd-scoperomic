@@ -13,5 +13,6 @@ Template.footer.events(
 		{
 			"name" : msg
 		});
+		$("#wish").val("");
 	}
 });

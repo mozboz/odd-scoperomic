@@ -21,16 +21,20 @@ Template.objectPage.events(
 			});		
 	},
 	
-	'keyup .value-editor' : function(e) {
-        if (e.which != 13) 
+	'blur .value-editor' : function(e) {
+        /*if (e.which != 13) 
         	return;
         
         e.preventDefault();
-
+*/
         var editorId = jQuery(e.currentTarget).attr("id");
         var key = editorId.split("_")[0]; 
         var value = jQuery(e.currentTarget).val().trim();
+        var prevValue = jQuery(e.currentTarget).attr("data-previous").trim();
 		
+        if (value == prevValue)
+        	return;
+        
 		var objToUpdate = loadObject(jQuery("#id").val(), parseInt(jQuery("#rev").val()));
 		objToUpdate[key] = value;
 		

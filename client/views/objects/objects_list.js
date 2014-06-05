@@ -1,6 +1,9 @@
 Template.objectsList.helpers({
     objects: function() {
-        return Objects.find();
+        return Objects.find({},
+        		{
+    		"timestamp" : "asc"
+    	});
     }
 });
 
