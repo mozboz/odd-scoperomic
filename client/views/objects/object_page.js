@@ -2,6 +2,8 @@ Template.objectPage.events(
 {
 	'click #add-attribute-to-object' : function(e)
 	{
+		e.preventDefault();
+		
 		var key = jQuery("#key").val().trim();
 		var val = jQuery("#value").val().trim();
 		
@@ -10,7 +12,13 @@ Template.objectPage.events(
 			return;
 		}
 		this.obj[key] = val;
+		
 		storeObject(this.obj);
+		
+		Router.go("objectPage", {
+				id: this.obj.id, 
+				rev: this.obj.rev
+			});		
 	},
 	
 	'keyup .value-editor' : function(e) {
@@ -20,12 +28,18 @@ Template.objectPage.events(
         e.preventDefault();
 
         var editorId = jQuery(e.currentTarget).attr("id");
-        var key = editorId.split("_")[0];        
+        var key = editorId.split("_")[0]; 
+        var value = jQuery(e.currentTarget).val().trim();
 		
 		var objToUpdate = loadObject(jQuery("#id").val(), parseInt(jQuery("#rev").val()));
-		objToUpdate[key] = jQuery(e.currentTarget).val().trim();
+		objToUpdate[key] = value;
 		
 		storeObject(objToUpdate);
+		
+		Router.go("objectPage", {
+				id: objToUpdate.id, 
+				rev: objToUpdate.rev
+			});	
 	}
 });
 
@@ -64,6 +78,7 @@ Template.objectPage.helpers(
 		}
 
 		return ({
+			variableDep : this.variableDep,
 			obj : this,
 			fixed : fixed,
 			variable : variable
