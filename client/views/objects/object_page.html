@@ -27,7 +27,7 @@
         <h2>Select from Objects</h2>
 
         {{#each objects}}
-            <div class="element"> {{name}} </div>
+            <a href="{{pathFor 'objectPage'}}"><div class="element"> {{name}} </div></a>
         {{/each}}
 
     </aside>
