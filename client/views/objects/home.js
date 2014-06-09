@@ -1,4 +1,4 @@
-Template.objectsList.helpers({
+Template.home.helpers({
     objects: function() {
         return Objects.find({},
         		{
