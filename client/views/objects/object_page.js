@@ -76,9 +76,14 @@ Template.objectPage.rendered = function() {
 	  	    return "translate(" + d.x + "," + d.y + ")"; });
 	}
 	
-	jQuery(".value-editor-key").each (function(idx, elm) {
-		
+	// make the entries dragable
+	jQuery(".value-editor-key-container").each (function(idx, elm) {
+		jQuery(elm).draggable({
+			helper:"clone"
+		});
 	});
+	
+	jQuery("#object-composer-container").droppable();
 
 };
 
