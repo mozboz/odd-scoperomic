@@ -1,12 +1,13 @@
 <template name="objectPage">
 
+
 	<div class="main">
 
 		{{#with detail}}
 
 		<input type="hidden" id="id" value="{{obj.id}}" />
 		<input type="hidden" id="rev" value="{{obj.rev}}" />
-		
+
 		<h2>Add relations</h2>
 		<div class="addRelation">
 			<input type="text" id="key" placeholder="key">
@@ -23,7 +24,7 @@
 			{{/each}}
 		</div>
 		<div id="object-composer-container" style="width:300px; height:400px; float:right; background:#333;">
-			
+
 		</div>
 
 		{{/with}}
@@ -32,7 +33,7 @@
 				Object history values
 			</div>
 			<div id="object-history-graph">
-				
+
 			</div>
 		</div>
 	</div>
@@ -41,10 +42,11 @@
 
 		{{#each objects}}
 		<div class="element">
-			{{name}}
+			 <a href="{{pathFor 'objectPage'}}"><div class="element"> {{name}} </div></a>
 		</div>
 		{{/each}}
 
 	</aside>
 	{{invokeLoaded}}
 </template>
+

@@ -1,7 +1,7 @@
 Template.objectPage.rendered = function() {
-	
+
 	var graphData = Template.objectPage.graph(this.data);
-	
+
 	var width = 960,
 	    height = 500;
 
@@ -51,7 +51,7 @@ Template.objectPage.rendered = function() {
 	node.append("circle")
 	    .attr("r", 5);
 
-	// add the text 
+	// add the text
 	node.append("text")
 	    .attr("x", 12)
 	    .attr("dy", ".35em")
@@ -63,26 +63,26 @@ Template.objectPage.rendered = function() {
 	        var dx = d.target.x - d.source.x,
 	            dy = d.target.y - d.source.y,
 	            dr = Math.sqrt(dx * dx + dy * dy);
-	        return "M" + 
-	            d.source.x + "," + 
-	            d.source.y + "A" + 
-	            dr + "," + dr + " 0 0,1 " + 
-	            d.target.x + "," + 
+	        return "M" +
+	            d.source.x + "," +
+	            d.source.y + "A" +
+	            dr + "," + dr + " 0 0,1 " +
+	            d.target.x + "," +
 	            d.target.y;
 	    });
 
 	    node
-	        .attr("transform", function(d) { 
+	        .attr("transform", function(d) {
 	  	    return "translate(" + d.x + "," + d.y + ")"; });
 	}
-	
+
 	// make the entries dragable
 	jQuery(".value-editor-key-container").each (function(idx, elm) {
 		jQuery(elm).draggable({
 			helper:"clone"
 		});
 	});
-	
+
 	jQuery("#object-composer-container").droppable();
 
 };
@@ -100,7 +100,7 @@ Template.objectPage.events(
 			alert("You can not change the keys of an object. Instead, add new ones.");
 			return;
 		}
-		
+
 		this.obj[key] = val;
 		
 		storeObject(this.obj);
@@ -174,41 +174,41 @@ Template.objectPage.helpers(
 			variable : variable
 		});
 	},
-	
+
 	graph : function(obj) {
 
-		// Add this object as 
+		// Add this object as
 		var nodes = [{name:obj.name + "(" + obj.rev + ")"}];
 		var edges = [];
 		var previousIndex = 0;
 
 		var currentObj = obj;
-		
+
 		while (currentObj.derivedFrom != null
-				&& typeof currentObj.derivedFrom != "undefined") {	
-			
+				&& typeof currentObj.derivedFrom != "undefined") {
+
 			currentObj = Objects.findOne({
 				id:currentObj.derivedFrom.id,
 				rev:currentObj.derivedFrom.rev
 			});
-			
+
 			if (typeof currentObj == "undefined")
 				break;
-			
+
 			edges.push({
 				source: previousIndex,
 				target: ++previousIndex
 			});
-			
+
 			nodes.push({
 				name:currentObj.name + "(" + currentObj.rev + ")"
 			});
 		}
-		
+
 		return {
 			nodes: nodes,
 			edges: edges
 		}
-		
+
 	}
 });
