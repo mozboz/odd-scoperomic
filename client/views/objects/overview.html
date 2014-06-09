@@ -1,0 +1,47 @@
+<template name="overview">
+
+    <div class="main">
+
+        {{#with detail}}
+
+            <input type="hidden" id="id" value="{{obj.id}}" />
+            <input type="hidden" id="rev" value="{{obj.rev}}" />
+
+            <h2>Add relations</h2>
+            <div class="addRelation">
+                <input type="text" id="key" placeholder="key">
+                <input type="text" id="value" placeholder="value">
+                <button id="add-attribute-to-object">
+                    Add
+                </button>
+            </div>
+
+             <div id="object-composer-container" style="height:100px; background:lightgrey; padding: 10px; margin-top: 10px;">
+                Drop here
+            </div>
+
+            <h2>Attributes</h2>
+
+            <div id="object-attribute-container" style="width:500px; height:auto;">
+                {{#each variable}}
+                    {{> propertyEditor}}
+                {{/each}}
+            </div>
+
+		{{/with}}
+
+    </div>
+
+    <aside>
+
+        <h2>Auto Filter</h2>
+
+		{{#each objects}}
+            <a href="{{pathFor 'objectPage'}}"><div class="element"> {{name}} </div></a>
+		{{/each}}
+
+    </aside>
+
+</template>
+
+

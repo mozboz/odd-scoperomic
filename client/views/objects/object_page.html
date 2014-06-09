@@ -27,25 +27,9 @@
 		</div>
 
 		{{/with}}
-		<div id="object-history">
-			<div id="object-history-values">
-				Object history values
-			</div>
-			<div id="object-history-graph">
 
-			</div>
-		</div>
 	</div>
-	<aside>
-		<h2>Select from Objects</h2>
 
-		{{#each objects}}
-		<div class="element">
-			 <a href="{{pathFor 'objectPage'}}"><div class="element"> {{name}} </div></a>
-		</div>
-		{{/each}}
-
-	</aside>
 	{{invokeLoaded}}
 </template>
 
