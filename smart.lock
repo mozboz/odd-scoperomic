@@ -7,8 +7,7 @@
       "accounts-ui-bootstrap-dropdown": {},
       "accounts-guest": {},
       "session-amplify": {},
-      "jquery-ui": {},
-      "tabs": {}
+      "jquery-ui": {}
     },
     "packages": {
       "iron-router": {
@@ -40,11 +39,6 @@
         "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",
         "tag": "v1.9.2",
         "commit": "c437d45edcf1367df8d5ffa8bad2867758030bd2"
-      },
-      "tabs": {
-        "git": "https://github.com/andrewreedy/meteor-tabs.git",
-        "tag": "v0.0.6",
-        "commit": "cde166031e8f1560e0d2ab2bb1cb9de789b5bab6"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

@@ -5,7 +5,6 @@
     "accounts-ui-bootstrap-dropdown": {},
     "accounts-guest": {},
     "session-amplify": {},
-    "jquery-ui": {},
-    "tabs": {}
+    "jquery-ui": {}
   }
 }
