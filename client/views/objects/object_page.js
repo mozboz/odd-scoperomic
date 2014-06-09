@@ -83,7 +83,11 @@ Template.objectPage.rendered = function() {
 		});
 	});
 
-	jQuery("#object-composer-container").droppable();
+	jQuery("#object-composer-container").droppable({
+		drop: function(event,ui) {
+			alert(jQuery(ui.draggable.get(0)).html());
+		}
+	});
 
 };
 
@@ -96,12 +100,23 @@ Template.objectPage.events(
 		var key = jQuery("#key").val().trim();
 		var val = jQuery("#value").val().trim();
 		
+
 		if (typeof this.obj[key] != "undefined") {
 			alert("You can not change the keys of an object. Instead, add new ones.");
 			return;
 		}
+		
+		// Create the predicate object
+		var predicateObj = storeObject({
+			name:key
+		});
 
-		this.obj[key] = val;
+		// Create the value object
+		var valueObj = storeObject({
+			name:val
+		});
+		
+		this.obj[predicateObj.id + "#" + predicateObj.rev] = valueObj.id + "#" + valueObj.rev;
 		
 		storeObject(this.obj);
 		
@@ -109,6 +124,27 @@ Template.objectPage.events(
 				id: this.obj.id, 
 				rev: this.obj.rev
 			});		
+	},
+	
+	'keyup #key' : function(e) {
+		var searchFor = jQuery(e.target).val();
+		
+		searchFor = searchFor.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+		var searchResult = Objects.find({
+			name: {$regex: '^' + searchFor + '.*'}
+		});
+		
+		jQuery("#completionList").html("");
+		
+		searchResult.forEach(function(element) {
+			jQuery("#completionList").html(jQuery("#completionList").html() + element.name + "<br/>");
+		});
+	},
+	
+	'keyup #value' : function(e) {
+		var searchFor = jQuery(e.target).val();
+		
+		
 	},
 	
 	'blur .value-editor' : function(e) {
