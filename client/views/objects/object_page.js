@@ -116,7 +116,11 @@ Template.objectPage.events(
         var editorId = jQuery(e.currentTarget).attr("id");
         var key = editorId.split("_")[0]; 
         var value = jQuery(e.currentTarget).val().trim();
-        var prevValue = jQuery(e.currentTarget).attr("data-previous").trim();
+        
+        var prevValue = "";
+        
+        if (typeof jQuery(e.currentTarget).attr("data-previous") != "undefined")
+        	prevValue = jQuery(e.currentTarget).attr("data-previous").trim();
 		
         if (value == prevValue)
         	return;
