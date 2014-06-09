@@ -23,9 +23,9 @@
             <h2>Attributes</h2>
 
             <div id="object-attribute-container" style="width:500px; height:auto;">
-                {{#each variable}}
-                    {{> propertyEditor}}
-                {{/each}}
+	                {{#each variable}}
+	                    {{> propertyEditor}}
+	                {{/each}}
             </div>
 
 		{{/with}}
@@ -36,10 +36,11 @@
 
         <h2>Auto Filter</h2>
 
-		{{#each objects}}
-            <a href="{{pathFor 'objectPage'}}"><div class="element"> {{name}} </div></a>
-		{{/each}}
-
+    	<div id="completionList">
+			{{#each objects}}
+	            <a href="{{pathFor 'objectPage'}}"><div class="element"> {{name}} </div></a>
+			{{/each}}
+       </div>
     </aside>
 
 </template>
