@@ -1,6 +1,6 @@
 Template.graph.rendered = function() {
 
-	var graphData = Template.objectPage.graph(this.data);
+	var graphData = Template.graph.graph(this.data);
 
 	var width = 960,
 	    height = 500;
@@ -76,13 +76,46 @@ Template.graph.rendered = function() {
 	  	    return "translate(" + d.x + "," + d.y + ")"; });
 	}
 
-	// make the entries dragable
-	jQuery(".value-editor-key-container").each (function(idx, elm) {
-		jQuery(elm).draggable({
-			helper:"clone"
-		});
-	});
-
-	jQuery("#object-composer-container").droppable();
-
 };
+
+Template.graph.helpers ( {
+
+	graph : function(obj) {
+
+		// Add this object as
+		var nodes = [{name:obj.name + "(" + obj.rev + ")"}];
+		var edges = [];
+		var previousIndex = 0;
+
+		var currentObj = obj;
+
+		while (currentObj.derivedFrom != null
+				&& typeof currentObj.derivedFrom != "undefined") {
+
+			currentObj = Objects.findOne({
+				id:currentObj.derivedFrom.id,
+				rev:currentObj.derivedFrom.rev
+			});
+
+			if (typeof currentObj == "undefined")
+				break;
+
+			edges.push({
+				source: previousIndex,
+				target: ++previousIndex
+			});
+
+			nodes.push({
+				name:currentObj.name + "(" + currentObj.rev + ")"
+			});
+		}
+
+		return {
+			nodes: nodes,
+			edges: edges
+		}
+
+	}
+
+});
+
