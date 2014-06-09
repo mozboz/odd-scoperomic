@@ -144,7 +144,16 @@ Template.objectPage.events(
 	'keyup #value' : function(e) {
 		var searchFor = jQuery(e.target).val();
 		
+		searchFor = searchFor.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+		var searchResult = Objects.find({
+			name: {$regex: '^' + searchFor + '.*'}
+		});
 		
+		jQuery("#completionList").html("");
+		
+		searchResult.forEach(function(element) {
+			jQuery("#completionList").html(jQuery("#completionList").html() + element.name + "<br/>");
+		});		
 	},
 	
 	'blur .value-editor' : function(e) {
@@ -204,7 +213,24 @@ Template.objectPage.helpers(
 
 			isSystemField(propertyName)
 			? fixed.push({ key : propertyName, value : propertyValue }) 
-			: variable.push({ key : propertyName, value : propertyValue });
+			: (function() {
+					var keyOidParts = parseOid(propertyName);
+					var valueOidParts = parseOid(propertyValue);
+					
+					var keyObj = Objects.findOne({
+						id:keyOidParts.id,
+						rev:keyOidParts.rev
+					});
+					var valObj = Objects.findOne({
+						id:valueOidParts.id,
+						rev:valueOidParts.rev						
+					});
+					variable.push({ 
+						key : keyObj.name, 
+						value : valObj.name 
+					});
+				}
+			  )();
 		}
 
 		return ({
