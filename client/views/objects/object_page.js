@@ -75,6 +75,10 @@ Template.objectPage.rendered = function() {
 	        .attr("transform", function(d) { 
 	  	    return "translate(" + d.x + "," + d.y + ")"; });
 	}
+	
+	jQuery(".value-editor-key").each (function(idx, elm) {
+		
+	});
 
 };
 

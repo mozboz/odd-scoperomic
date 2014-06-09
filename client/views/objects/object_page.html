@@ -17,9 +17,14 @@
 		</div>
 		<h2>Attributes</h2>
 
-		{{#each variable}}
-			{{> propertyEditor}}
-		{{/each}}
+		<div id="object-attribute-container">
+			{{#each variable}}
+				{{> propertyEditor}}
+			{{/each}}
+		</div>
+		<div id="object-composer-container">
+			
+		</div>
 
 		{{/with}}
 		<div id="object-history">
