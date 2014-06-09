@@ -1,6 +1,8 @@
 <template name="propertyEditor">
 	<div class="element">
-		<input type="text" value="{{key}}" readonly="readonly" id="{{key}}_key" />
+		<div class="value-editor-key-container" style="display:inline-block;">
+			<span class="value-editor-key" id="{{key}}_key">{{key}}</span>
+		</div>
 		:
 		<input data-previous="{{value}}" type="text" value="{{value}}" class="value-editor" id="{{key}}_editor" />
 	</div>

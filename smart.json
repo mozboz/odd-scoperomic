@@ -4,6 +4,7 @@
     "spin": {},
     "accounts-ui-bootstrap-dropdown": {},
     "accounts-guest": {},
-    "session-amplify": {}
+    "session-amplify": {},
+    "jquery-ui": {}
   }
 }
