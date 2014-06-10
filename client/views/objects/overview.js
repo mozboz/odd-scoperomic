@@ -1,6 +1,6 @@
 Template.overview.rendered = function() {
 
-	// make the entries dragable
+	// make the entries draggable
 	jQuery(".value-editor-key-container").each (function(idx, elm) {
 		jQuery(elm).draggable({
 			helper:"clone"
@@ -17,97 +17,54 @@ Template.overview.rendered = function() {
 
 Template.overview.events(
 {
-		'click #add-attribute-to-object' : function(e)
+	'click #add-attribute-to-object' : function(e)
 	{
 		e.preventDefault();
 
 		var key = jQuery("#key").val().trim();
 		var val = jQuery("#value").val().trim();
 
-
-		if (typeof this.obj[key] != "undefined") {
-			alert("You can not change the keys of an object. Instead, add new ones.");
-			return;
-		}
-
-		// Create the predicate object
-		var predicateObj = storeObject({
-			name:key
-		});
-
-		// Create the value object
-		var valueObj = storeObject({
-			name:val
-		});
-
-		this.obj[predicateObj.id + "#" + predicateObj.rev] = valueObj.id + "#" + valueObj.rev;
-
-		storeObject(this.obj);
+		addOrChangeProperty(this.obj.id + "#" + this.obj.rev, key, val);
 
 		Router.go("overview", {
-				id: this.obj.id,
-				rev: this.obj.rev
-			});
+			id: this.obj.id,
+			rev: this.obj.rev + 1
+		});
 	},
 
 	'keyup #key' : function(e) {
-		var searchFor = jQuery(e.target).val();
 
-		searchFor = searchFor.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
-		var searchResult = Objects.find({
-			name: {$regex: '^' + searchFor + '.*'}
-		});
-
-		jQuery("#completionList").html("");
-
-		searchResult.forEach(function(element) {
-			jQuery("#completionList").html(jQuery("#completionList").html() + element.name + "<br/>");
-		});
+		var autoCompleteList = autoComplete(jQuery(e.target).val(), this.obj);
+		
 	},
 
 	'keyup #value' : function(e) {
-		var searchFor = jQuery(e.target).val();
 
-		searchFor = searchFor.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
-		var searchResult = Objects.find({
-			name: {$regex: '^' + searchFor + '.*'}
-		});
-
-		jQuery("#completionList").html("");
-
-		searchResult.forEach(function(element) {
-			jQuery("#completionList").html(jQuery("#completionList").html() + element.name + "<br/>");
-		});
+		var autoCompleteList = autoComplete(jQuery(e.target).val(), this.obj);
+		
 	},
 
 	'blur .value-editor' : function(e) {
-
-        var editorId = jQuery(e.currentTarget).attr("id");
-        var key = editorId.split("_")[0];
-        var value = jQuery(e.currentTarget).val().trim();
-
-        var prevValue = "";
-
-        if (typeof jQuery(e.currentTarget).attr("data-previous") != "undefined")
-        	prevValue = jQuery(e.currentTarget).attr("data-previous").trim();
-
-        if (value == prevValue)
-        	return;
-
-		var objToUpdate = loadObject(jQuery("#id").val(), parseInt(jQuery("#rev").val()));
-		objToUpdate[key] = value;
-
-		storeObject(objToUpdate);
-
+		
+		var newVal = jQuery(e.target).val();
+		if (newVal == this.val)
+			return;
+		
+		var id = jQuery("#id").val();
+		var rev = jQuery("#rev").val();
+		
+		addOrChangeProperty(id + "#" + rev, this.key, newVal);
+		
 		Router.go("overview", {
-				id: objToUpdate.id,
-				rev: objToUpdate.rev
-			});
+			id: id,
+			rev: parseInt(rev) + 1
+		});
 	}
 });
 
 Template.overview.helpers(
-{
+{	
+	
 	/**
 	 * Supplies the autocomplete list with data.
 	 */
@@ -115,6 +72,7 @@ Template.overview.helpers(
 	{
 		return Objects.find();
 	},
+	
 	/**
 	 * Takes a object and returns a view representation of it.
 	 *
@@ -166,7 +124,6 @@ Template.overview.helpers(
 		}
 
 		return ({
-			variableDep : this.variableDep,
 			obj : this,
 			fixed : fixed,
 			variable : variable
