@@ -8,7 +8,6 @@ standard-app-packages
 iron-router
 spin
 accounts-password
-accounts-ui-bootstrap-dropdown
 http
 accounts-guest
 session-amplify

@@ -1,4 +1,3 @@
-
 var feedPollingHandle;
 var pollingInterval = 2500; // ms. How often to poll for changes on a remote API
 var feedCheckTimeout = 10000; // ms. How long to wait for a response when validating a profile URL
