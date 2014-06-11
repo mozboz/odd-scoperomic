@@ -36,7 +36,6 @@ Template.graph.rendered = function() {
 	var path = svg.append("svg:g").selectAll("path")
 	    .data(force.links())
 	  .enter().append("svg:path")
-//	    .attr("class", function(d) { return "link " + d.type; })
 	    .attr("class", "link")
 	    .attr("marker-end", "url(#end)");
 
@@ -81,41 +80,58 @@ Template.graph.rendered = function() {
 Template.graph.helpers ( {
 
 	graph : function(obj) {
-
-		// Add this object as
-		var nodes = [{name:obj.name + "(" + obj.rev + ")"}];
-		var edges = [];
-		var previousIndex = 0;
-
-		var currentObj = obj;
-
-		while (currentObj.derivedFrom != null
-				&& typeof currentObj.derivedFrom != "undefined") {
-
-			currentObj = Objects.findOne({
-				id:currentObj.derivedFrom.id,
-				rev:currentObj.derivedFrom.rev
-			});
-
-			if (typeof currentObj == "undefined")
-				break;
-
+		
+		var edges = [];		
+		var derivedFromArray = [];
+		var nodes = [{name:obj.name + "(" + obj.rev + ") " + 0}];
+		var cur = 1;
+		
+		jQuery.each(obj.derivedFrom, function(idx, obj) {
+			
+			derivedFromArray.push(Objects.findOne({
+				id:obj.id,
+				rev:obj.rev
+			}));
+			
 			edges.push({
-				source: previousIndex,
-				target: ++previousIndex
+				source:0,
+				target:cur++
 			});
+		});
+		
+		while (derivedFromArray.length > 0) {
+	
+			var current = derivedFromArray.pop();
+			var innerCur = cur;
 
 			nodes.push({
-				name:currentObj.name + "(" + currentObj.rev + ")"
-			});
-		}
+				name:current.name + "(" + current.rev + ")"
+			});						
+			
+			if (typeof current.derivedFrom != "undefined"
+				&& current.derivedFrom.length > 0) {
+				
+				jQuery.each(current.derivedFrom, function(idx, obj) {				
+					
+					derivedFromArray.push(Objects.findOne({
+						id:obj.id,
+						rev:obj.rev
+					}));
+					
+					edges.push({
+						source:cur - 1,
+						target:innerCur++
+					});
+					
+				});
+			}
+			cur++;
+		}		
 
 		return {
 			nodes: nodes,
 			edges: edges
 		}
-
 	}
-
 });
 
