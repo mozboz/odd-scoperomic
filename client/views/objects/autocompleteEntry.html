@@ -1,9 +1,14 @@
 <template name="autocompleteEntry">
 	<div class="autocompleteEntry">
 		<span class="autocomplete-entry-name">{{name}}</span>
-		<a class="autocomplete-entry-expand" style="float:right; font-size:14px;">Expand/Collapse</a>
-		{{#each fields}}
-			{{name}}
-		{{/each}}
+		<a class="autocomplete-entry-expand" style="float:right; font-size:14px; cursor:pointer;">Expand/Collapse</a>
+		<div class="autocomplete-fields-container collapsed" style="height:16px; display:block; overflow:hidden;">
+			<input type="hidden" class="oid" value="{{id}}#{{rev}}" />
+			{{#each fields}}
+				<span class="autocomplete-entry-field" style="font-size:16px; display:block;">
+					<a href="">{{name}}</a>
+				</span>
+			{{/each}}
+		</div>
 	</div>
 </template>
