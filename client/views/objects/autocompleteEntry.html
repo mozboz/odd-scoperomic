@@ -1,5 +1,9 @@
 <template name="autocompleteEntry">
 	<div class="autocompleteEntry">
-		{{name}}
+		<span class="autocomplete-entry-name">{{name}}</span>
+		<a class="autocomplete-entry-expand" style="float:right; font-size:14px;">Expand/Collapse</a>
+		{{#each fields}}
+			{{name}}
+		{{/each}}
 	</div>
 </template>
