@@ -37,6 +37,9 @@
         <h2>Auto Filter</h2>
 
     	<div id="completionList">
+    		{{#each objects}}
+				{{> autocompleteEntry}}
+    		{{/each}}
        </div>
     </aside>
 

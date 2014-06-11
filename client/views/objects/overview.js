@@ -33,15 +33,11 @@ Template.overview.events(
 	},
 
 	'keyup #key' : function(e) {
-
-		var autoCompleteList = autoComplete(jQuery(e.target).val(), this.obj);
-		
+		Session.set("overview_autoComplete", jQuery(e.target).val());
 	},
 
 	'keyup #value' : function(e) {
-
-		var autoCompleteList = autoComplete(jQuery(e.target).val(), this.obj);
-		
+		Session.set("overview_autoComplete", jQuery(e.target).val());
 	},
 
 	'blur .value-editor' : function(e) {
@@ -70,7 +66,7 @@ Template.overview.helpers(
 	 */
 	objects : function()
 	{
-		return Objects.find();
+		return autoComplete(Session.get("overview_autoComplete"), this.obj);
 	},
 	
 	/**
@@ -104,7 +100,7 @@ Template.overview.helpers(
 					});
 
 					var valObj = {
-							name:""
+						name:""
 					};
 
 					if (propertyValue != null) {
