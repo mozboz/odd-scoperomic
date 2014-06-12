@@ -87,43 +87,18 @@ Template.overview.helpers(
 	 */
 	detail : function()
 	{
+		var displayObject = createDisplayObject(this);
+		
 		var fixed = [];
 		var variable = [];
 
-		for (propertyName in this)
-		{
-			var propertyValue = this[propertyName];
-			if (propertyName == "_id")
-				continue;
+		for(var propertyName in displayObject) {
 
+			var propertyValue = displayObject[propertyName];
+			
 			isSystemField(propertyName)
 			? fixed.push({ key : propertyName, value : propertyValue })
-			: (function() {
-
-					var keyOidParts = parseOid(propertyName);
-					var keyObj = Objects.findOne({
-						id:keyOidParts.id,
-						rev:keyOidParts.rev
-					});
-
-					var valObj = {
-						name:""
-					};
-
-					if (propertyValue != null) {
-						var valueOidParts = parseOid(propertyValue);
-						var valObj = Objects.findOne({
-							id:valueOidParts.id,
-							rev:valueOidParts.rev
-						});
-					}
-
-					variable.push({
-						key : keyObj.name,
-						value : valObj.name
-					});
-				}
-			  )();
+			: variable.push({ key: propertyName, value: propertyValue })
 		}
 
 		return ({
