@@ -1,3 +1,12 @@
+/*
+ * @todo: the save on blur feature for property values is problematic
+ * 		  in conjunction with the autocompletion.
+ * 		  Everytime the box looses focus because one clicks
+ * 		  on the autocomplete-entry, an incomplete version will be saved
+ * 		  because the input loses focus.
+ */
+
+
 var submitValues = function(obj) {
 	
 	var key = jQuery("#key").val().trim();
@@ -40,8 +49,8 @@ Template.overview.rendered = function() {
 
 		if (lastActiveInput == "#key")
 			jQuery("#value").focus();
-		if (lastActiveInput == "#value")
-			jQuery("#value").focus();
+		else 
+			jQuery(lastActiveInput).focus();
 		
 		var oidParts = parseOid(selectedEntryOid);
 		var obj = loadObject(oidParts.id, oidParts.rev)
@@ -66,6 +75,10 @@ Template.overview.events(
 		Session.set("overview_autoComplete", jQuery(e.target).val());
 		Session.set("lastActiveInput", "#key");
 	},
+	
+	'focus #key' : function(e) {
+		Session.set("lastActiveInput", "#key");
+	},
 
 	'keyup #value' : function(e) {
 		if (e.which == 13) {
@@ -74,6 +87,14 @@ Template.overview.events(
 			Session.set("overview_autoComplete", jQuery(e.target).val());
 			Session.set("lastActiveInput", "#value");
 		}
+	},
+	
+	'focus #value' : function(e) {
+		Session.set("lastActiveInput", "#value");
+	},
+	
+	'focus .value-editor' : function(e) {
+		Session.set("lastActiveInput", "#" + e.target.id);
 	},
 	
 	'keyup .value-editor' : function(e) {
