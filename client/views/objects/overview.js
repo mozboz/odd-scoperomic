@@ -66,7 +66,12 @@ Template.overview.helpers(
 	 */
 	objects : function()
 	{
-		return autoComplete(Session.get("overview_autoComplete"), this.obj);
+		var lookup = Session.get("overview_autoComplete");
+		
+		if (typeof lookup != "undefined")
+			return autoComplete(lookup, this);
+		
+		return [];
 	},
 	
 	/**

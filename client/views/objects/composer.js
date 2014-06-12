@@ -18,6 +18,11 @@ Template.composer.helpers(
 {
 	autocompleteEntries : function()
 	{
-		return autoComplete(Session.get("composer_autoComplete"), this.obj);
+		var lookup = Session.get("composer_autoComplete");
+		
+		if (typeof lookup != "undefined")
+			return autoComplete(lookup, this);
+		
+		return [];
 	}
 });
