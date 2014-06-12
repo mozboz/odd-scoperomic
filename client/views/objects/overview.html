@@ -16,10 +16,6 @@
                 </button>
             </div>
 
-             <div id="object-composer-container" style="height:100px; background:lightgrey; padding: 10px; margin-top: 10px;">
-                Drop here
-            </div>
-
             <h2>Attributes</h2>
 
             <div id="object-attribute-container" style="width:500px; height:auto;">
@@ -37,9 +33,9 @@
         <h2>Auto Filter</h2>
 
     	<div id="completionList">
-			{{#each objects}}
-	            <a href="{{pathFor 'objectPage'}}"><div class="element"> {{name}} </div></a>
-			{{/each}}
+    		{{#each objects}}
+				{{> autocompleteEntry}}
+    		{{/each}}
        </div>
     </aside>
 
