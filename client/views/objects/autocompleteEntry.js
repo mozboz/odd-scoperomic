@@ -1,15 +1,14 @@
-Template.autocompleteEntry.rendered = function() {
+Template.autocompleteEntry.rendered = function () {
 	jQuery(".autocomplete-entry-field").draggable({
-		helper:"clone",
-        appendTo: "body"
+		helper: "clone",
+		appendTo: "body"
 	});
 };
 
-Template.autocompleteEntry.events(
-{
-	'click .autocomplete-entry-expand' : function(e) {
-		
-		var element = jQuery(e.target).parent();		
+Template.autocompleteEntry.events({
+	'click .autocomplete-entry-expand': function (e) {
+
+		var element = jQuery(e.target).parent();
 		var container = jQuery(".autocomplete-fields-container", element);
 
 		if (container.hasClass("collapsed")) {
@@ -24,29 +23,27 @@ Template.autocompleteEntry.events(
 	},
 });
 
-Template.autocompleteEntry.helpers(
-{
-	fields : function()
-	{
+Template.autocompleteEntry.helpers({
+	fields: function () {
 		var fields = [];
-		
+
 		for (var f in this) {
-			
+
 			if (isSystemField(f))
 				continue;
-			
+
 			var oidParts = parseOid(f);
 			var fieldObj = loadObject(oidParts.id, oidParts.rev);
-			
+
 			fields.push({
-				name:fieldObj.name,
-				sourceObjId : this.id,
+				name: fieldObj.name,
+				sourceObjId: this.id,
 				sourceObjRev: this.rev,
-				fieldId : fieldObj.id,
-				fieldRev : fieldObj.rev
+				fieldId: fieldObj.id,
+				fieldRev: fieldObj.rev
 			});
 		}
-		
+
 		return fields;
 	}
 });

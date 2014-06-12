@@ -2,9 +2,13 @@
   "packages": {
     "iron-router": {},
     "spin": {},
-    "accounts-ui-bootstrap-dropdown": {},
     "accounts-guest": {},
     "session-amplify": {},
-    "jquery-ui": {}
+    "jquery-ui": {},
+<<<<<<< HEAD
+    "accounts-persona": {}
+=======
+    "sharejs": {}
+>>>>>>> coEdit
   }
 }

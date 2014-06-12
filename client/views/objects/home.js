@@ -1,9 +1,8 @@
 Template.home.helpers({
-    objects: function() {
-        return Objects.find({},
-        		{
-    		"timestamp" : "asc"
-    	});
+    objects: function () {
+        return Objects.find({}, {
+            "timestamp": "asc"
+        });
     }
 });
 

@@ -1,0 +1,23 @@
+<template name="start">
+
+    <head>
+        <script>
+            (function () {
+                var t = document.createElement('script');
+                t.type = 'text/javascript';
+                t.async = true;
+                t.id = 'persona-lib';
+                t.src = '//login.persona.org/include.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(t, s);
+            })();
+        </script>
+    </head>
+
+    <div style="display: flex; justify-content: center; align-items: center; height: 100%">
+
+        <button id="login" style="padding: 10px">Lets go</button>
+
+    </div>
+
+</template>

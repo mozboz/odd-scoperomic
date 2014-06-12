@@ -4,13 +4,7 @@
 		<a class="autocomplete-entry-expand" style="float:right; font-size:14px; cursor:pointer;">Expand/Collapse</a>
 		<div class="autocomplete-fields-container collapsed" style="height:16px; display:block; overflow:hidden;">
 			{{#each fields}}
-				<span data-source-name="{{name}}"
-				      data-source-objId="{{sourceObjId}}" 
-				      data-source-objRev="{{sourceObjRev}}"
-				      data-source-fieldId="{{fieldId}}"
-				      data-source-fieldRev="{{fieldRev}}" 
-				      class="autocomplete-entry-field" 
-				      style="font-size:16px; display:block;">
+			<span data-source-name="{{name}}" data-source-objId="{{sourceObjId}}" data-source-objRev="{{sourceObjRev}}" data-source-fieldId="{{fieldId}}" data-source-fieldRev="{{fieldRev}}" class="autocomplete-entry-field" style="font-size:16px; display:block;">
 					<a href="">{{name}}</a>
 				</span>
 			{{/each}}
