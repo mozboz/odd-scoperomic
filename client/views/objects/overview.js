@@ -1,3 +1,20 @@
+var submitValues = function(obj) {
+	
+	var key = jQuery("#key").val().trim();
+	var val = jQuery("#value").val().trim();
+
+	addOrChangeProperty(obj.id + "#" + obj.rev, key, val);
+
+	jQuery("#key").val("");
+	jQuery("#value").val("");
+	
+	Router.go("overview", {
+		id: obj.id,
+		rev: obj.rev + 1
+	});
+	
+}
+
 Template.overview.rendered = function() {
 
 	// make the entries draggable
@@ -20,6 +37,11 @@ Template.overview.rendered = function() {
 		
 		if (typeof selectedEntryOid == "undefined")
 			return;
+
+		if (lastActiveInput == "#key")
+			jQuery("#value").focus();
+		if (lastActiveInput == "#value")
+			jQuery("#value").focus();
 		
 		var oidParts = parseOid(selectedEntryOid);
 		var obj = loadObject(oidParts.id, oidParts.rev)
@@ -37,15 +59,7 @@ Template.overview.events(
 	{
 		e.preventDefault();
 
-		var key = jQuery("#key").val().trim();
-		var val = jQuery("#value").val().trim();
-
-		addOrChangeProperty(this.obj.id + "#" + this.obj.rev, key, val);
-
-		Router.go("overview", {
-			id: this.obj.id,
-			rev: this.obj.rev + 1
-		});
+		submitValues(this.obj);
 	},
 
 	'keyup #key' : function(e) {
@@ -54,8 +68,12 @@ Template.overview.events(
 	},
 
 	'keyup #value' : function(e) {
-		Session.set("overview_autoComplete", jQuery(e.target).val());
-		Session.set("lastActiveInput", "#value");
+		if (e.which == 13) {
+			submitValues(this.obj);			
+		} else {
+			Session.set("overview_autoComplete", jQuery(e.target).val());
+			Session.set("lastActiveInput", "#value");
+		}
 	},
 	
 	'keyup .value-editor' : function(e) {
