@@ -1,10 +1,12 @@
 <template name="objectItem">
 
     <div class="postItem">
-        <div class="avatar"><img src="{{creator}}/me.png"></div>
+        <div class="avatar">
+            <img src="{{creator}}/me.png">
+        </div>
         <div class="postContent">
             <div class="postAuthor" style="font-size: 14px;">{{creator}} <span class="">{{id}}#{{rev}}</span>
-            	<a style="float:right; cursor:pointer;" class="derive-from-object">Derive new object</a>
+                <a style="float:right; cursor:pointer;" class="derive-from-object">Derive new object</a>
             </div>
             <a href="{{pathFor 'overview'}}">{{name}}</a>
         </div>

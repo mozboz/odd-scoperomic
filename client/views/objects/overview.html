@@ -4,27 +4,28 @@
 
         {{#with detail}}
 
-            <input type="hidden" id="id" value="{{obj.id}}" />
-            <input type="hidden" id="rev" value="{{obj.rev}}" />
+        <input type="hidden" id="id" value="{{obj.id}}" />
+        <input type="hidden" id="rev" value="{{obj.rev}}" />
 
-            <h2>Add relations</h2>
-            <div class="addRelation">
-                <input type="text" id="key" placeholder="key">
-                <input type="text" id="value" placeholder="value">
-                <button id="add-attribute-to-object">
-                    Add
-                </button>
-            </div>
+        <h2>Type</h2>
+        {{type}}
 
-            <h2>Attributes</h2>
+        <h2>Add relations</h2>
+        <div class="addRelation">
+            <input type="text" id="key" placeholder="key">
+            <input type="text" id="value" placeholder="value">
+            <button id="add-attribute-to-object">
+                Add
+            </button>
+        </div>
 
-            <div id="object-attribute-container" style="width:500px; height:auto;">
-	                {{#each variable}}
-	                    {{> propertyEditor}}
-	                {{/each}}
-            </div>
+        <h2>Attributes</h2>
 
-		{{/with}}
+        <div id="object-attribute-container" style="width:500px; height:auto;">
+            {{#each variable}} {{> propertyEditor}} {{/each}}
+        </div>
+
+        {{/with}}
 
     </div>
 
@@ -32,11 +33,9 @@
 
         <h2>Auto Filter</h2>
 
-    	<div id="completionList">
-    		{{#each objects}}
-				{{> autocompleteEntry}}
-    		{{/each}}
-       </div>
+        <div id="completionList">
+            {{#each objects}} {{> autocompleteEntry}} {{/each}}
+        </div>
     </aside>
 
 </template>

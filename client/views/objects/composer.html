@@ -3,11 +3,10 @@
 	<div class="main">
 
 		<h2>Object composer</h2>
-		
+		<div id="object-composer-container" style="height:100px; background:lightgrey; padding: 10px; margin-top: 10px;">
+			Drop here
+		</div>
 
-         <div id="object-composer-container" style="height:100px; background:lightgrey; padding: 10px; margin-top: 10px;">
-            Drop here
-        </div>
 	</div>
 
 	<aside>
@@ -15,9 +14,8 @@
 		<span>Search:</span>
 		<input type="text" id="search" />
 		<div id="completionList">
-			{{#each autocompleteEntries}}
-				{{> autocompleteEntry}}
-			{{/each}}
+			{{#each autocompleteEntries}} {{> autocompleteEntry}} {{/each}}
 		</div>
 	</aside>
+
 </template>

@@ -5,13 +5,16 @@
 	font-family: 'FontAwesome', sans-serif; }
 
 html {
-	font-size: 16px; }
+	font-size: 16px;
+	height: 100%;
+}
 
 body {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
 	color: #294257;
 	font-weight: 400;
 	background: #F5F9F9;
+	height: 100%;
 }
 
 ul, li, a {

@@ -4,6 +4,7 @@
     "spin": {},
     "accounts-guest": {},
     "session-amplify": {},
-    "jquery-ui": {}
+    "jquery-ui": {},
+    "accounts-persona": {}
   }
 }
