@@ -15,8 +15,20 @@ Template.overview.rendered = function () {
 
 };
 
+<<<<<<< HEAD
 Template.overview.events({
 	'click #add-attribute-to-object': function (e) {
+=======
+Template.overview.events(
+{
+	'click .derive-from-object' : function(e)
+	{
+		deriveObjectFromObjects([this.obj]);
+	},
+
+	'click #add-attribute-to-object' : function(e)
+	{
+>>>>>>> coEdit
 		e.preventDefault();
 
 		var key = jQuery("#key").val().trim();

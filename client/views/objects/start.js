@@ -1,5 +1,5 @@
-Template.header.events({
-    'click #loginPersona': function () {
+Template.start.events({
+    'click #login': function () {
             Meteor.loginWithPersona();
     }
 });

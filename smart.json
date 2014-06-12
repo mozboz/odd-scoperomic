@@ -5,6 +5,10 @@
     "accounts-guest": {},
     "session-amplify": {},
     "jquery-ui": {},
+<<<<<<< HEAD
     "accounts-persona": {}
+=======
+    "sharejs": {}
+>>>>>>> coEdit
   }
 }
