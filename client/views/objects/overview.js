@@ -17,6 +17,11 @@ Template.overview.rendered = function() {
 
 Template.overview.events(
 {
+	'click .derive-from-object' : function(e)
+	{
+		deriveObjectFromObjects([this.obj]);
+	},
+
 	'click #add-attribute-to-object' : function(e)
 	{
 		e.preventDefault();
