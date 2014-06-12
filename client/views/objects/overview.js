@@ -90,43 +90,20 @@ Template.overview.helpers({
 	 *          the fixed values of the object variable:array are the user
 	 *          changeable values
 	 */
-	detail: function () {
+	detail : function()
+	{
+		var displayObject = createDisplayObject(this);
+
 		var fixed = [];
 		var variable = [];
 
-		for (propertyName in this) {
-			var propertyValue = this[propertyName];
-			if (propertyName == "_id")
-				continue;
+		for(var propertyName in displayObject) {
 
-			isSystemField(propertyName) ? fixed.push({
-				key: propertyName,
-				value: propertyValue
-			}) : (function () {
+			var propertyValue = displayObject[propertyName];
 
-				var keyOidParts = parseOid(propertyName);
-				var keyObj = Objects.findOne({
-					id: keyOidParts.id,
-					rev: keyOidParts.rev
-				});
-
-				var valObj = {
-					name: ""
-				};
-
-				if (propertyValue != null) {
-					var valueOidParts = parseOid(propertyValue);
-					var valObj = Objects.findOne({
-						id: valueOidParts.id,
-						rev: valueOidParts.rev
-					});
-				}
-
-				variable.push({
-					key: keyObj.name,
-					value: valObj.name
-				});
-			})();
+			isSystemField(propertyName)
+			? fixed.push({ key : propertyName, value : propertyValue })
+			: variable.push({ key: propertyName, value: propertyValue })
 		}
 
 		return ({
