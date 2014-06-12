@@ -2,7 +2,7 @@ Template.composer.rendered = function() {
 	jQuery("#object-composer-container").droppable({
 		  drop: function( event, ui ) {
 			  var fromOid = jQuery(ui.helper).attr("data-oid");
-			  
+			  jQuery("#object-composer-container").append(jQuery("<h1>" + fromOid + "</h1>"));
 		  }
 	});
 };

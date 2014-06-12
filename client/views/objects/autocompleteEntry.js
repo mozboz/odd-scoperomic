@@ -1,18 +1,14 @@
 Template.autocompleteEntry.rendered = function() {
 	jQuery(".autocomplete-entry-field").draggable({
-		helper:"clone",
-        appendTo: "body",
-        
-        start: function(e, ui) {
-        	
+		helper:function(e, ui) {
         	var oid = jQuery(jQuery(this).siblings("input").get(0)).val();
         	
         	var objIdParts = parseOid(oid);
         	var obj = loadObject(objIdParts.id, objIdParts.rev);
         	
-        	jQuery(this).attr("data-oid", oid);
-        	jQuery(this).attr("field-oid", oid);
-        }
+        	return jQuery("<span data-oid='" + oid + "' data-field-oid='" + oid + "'>Dragggg</span>");
+		},
+        appendTo: "body"
 	});
 };
 
@@ -40,6 +36,7 @@ Template.autocompleteEntry.helpers(
 	fields : function()
 	{
 		var fields = [];
+		
 		for (var f in this) {
 			
 			if (isSystemField(f))
@@ -56,6 +53,7 @@ Template.autocompleteEntry.helpers(
 				fieldRev : fieldObj.rev
 			});
 		}
+		
 		return fields;
 	}
 });
