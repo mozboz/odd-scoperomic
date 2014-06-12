@@ -2,16 +2,22 @@
 
 	<div class="main">
 
-        <h2>Object composer</h2>
-        
-        
+		<h2>Object composer</h2>
+		
+
+         <div id="object-composer-container" style="height:100px; background:lightgrey; padding: 10px; margin-top: 10px;">
+            Drop here
+        </div>
 	</div>
 
 	<aside>
-        <h2>Base objects</h2>
-        <div class="element">
-        	
-        </div>
+		<h2>Base objects</h2>
+		<span>Search:</span>
+		<input type="text" id="search" />
+		<div id="completionList">
+			{{#each autocompleteEntries}}
+				{{> autocompleteEntry}}
+			{{/each}}
+		</div>
 	</aside>
-
 </template>
