@@ -1,13 +1,6 @@
 Template.autocompleteEntry.rendered = function() {
 	jQuery(".autocomplete-entry-field").draggable({
-		helper:function(e, ui) {
-        	var oid = jQuery(jQuery(this).siblings("input").get(0)).val();
-        	
-        	var objIdParts = parseOid(oid);
-        	var obj = loadObject(objIdParts.id, objIdParts.rev);
-        	
-        	return jQuery("<span data-oid='" + oid + "' data-field-oid='" + oid + "'>Dragggg</span>");
-		},
+		helper:"clone",
         appendTo: "body"
 	});
 };

@@ -25,6 +25,8 @@ Template.overview.events(
 		var val = jQuery("#value").val().trim();
 
 		addOrChangeProperty(this.obj.id + "#" + this.obj.rev, key, val);
+		
+		var displyObj = createDisplayObject(this.obj);
 
 		Router.go("overview", {
 			id: this.obj.id,
@@ -66,7 +68,12 @@ Template.overview.helpers(
 	 */
 	objects : function()
 	{
-		return autoComplete(Session.get("overview_autoComplete"), this.obj);
+		var lookup = Session.get("overview_autoComplete");
+		
+		if (typeof lookup != "undefined")
+			return autoComplete(lookup, this);
+		
+		return [];
 	},
 	
 	/**
