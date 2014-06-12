@@ -1,8 +1,14 @@
 Template.composer.rendered = function() {
 	jQuery("#object-composer-container").droppable({
 		  drop: function( event, ui ) {
-			  var fromOid = jQuery(ui.helper).attr("data-oid");
-			  jQuery("#object-composer-container").append(jQuery("<h1>" + fromOid + "</h1>"));
+			  
+			  var objId = jQuery(ui.helper).attr("data-source-objId");
+			  var objRev = jQuery(ui.helper).attr("data-source-objRev");
+			  var fieldId = jQuery(ui.helper).attr("data-source-fieldId");
+			  var fieldRev = jQuery(ui.helper).attr("data-source-fieldRev");
+			  var fieldName = jQuery(ui.helper).attr("data-source-name");
+
+			  jQuery("#object-composer-container").append("<span>" + objId + "#" + objRev + " - " + fieldName + "(" + fieldId + "#" + fieldRev + ")" + "</span>");
 		  }
 	});
 };

@@ -25,6 +25,8 @@ Template.overview.events(
 		var val = jQuery("#value").val().trim();
 
 		addOrChangeProperty(this.obj.id + "#" + this.obj.rev, key, val);
+		
+		var displyObj = createDisplayObject(this.obj);
 
 		Router.go("overview", {
 			id: this.obj.id,
