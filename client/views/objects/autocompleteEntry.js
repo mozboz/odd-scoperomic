@@ -22,6 +22,15 @@ Template.autocompleteEntry.events(
 			container.height("18px");
 		}
 	},
+	
+	'click .use-autocomplete-entry' : function(e) {
+		var clickedLink = jQuery(e.currentTarget);
+		
+		var id = clickedLink.attr("data-entry-id");
+		var rev = clickedLink.attr("data-entry-rev");
+		
+		Session.set("use-autocomplete-entry", id + "#" + rev);
+	}
 });
 
 Template.autocompleteEntry.helpers(

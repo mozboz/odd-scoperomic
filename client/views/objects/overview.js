@@ -12,7 +12,23 @@ Template.overview.rendered = function() {
 			alert(jQuery(ui.draggable.get(0)).html());
 		}
 	});
-
+	
+	Deps.autorun(function () {
+		
+		var lastActiveInput = Session.get("lastActiveInput");
+		var selectedEntryOid = Session.get("use-autocomplete-entry");
+		
+		if (typeof selectedEntryOid == "undefined")
+			return;
+		
+		var oidParts = parseOid(selectedEntryOid);
+		var obj = loadObject(oidParts.id, oidParts.rev)
+		
+		jQuery(lastActiveInput).val(obj.name);
+		
+		Session.set("use-autocomplete-entry", undefined);
+	});
+	
 };
 
 Template.overview.events(
@@ -25,8 +41,6 @@ Template.overview.events(
 		var val = jQuery("#value").val().trim();
 
 		addOrChangeProperty(this.obj.id + "#" + this.obj.rev, key, val);
-		
-		var displyObj = createDisplayObject(this.obj);
 
 		Router.go("overview", {
 			id: this.obj.id,
@@ -36,10 +50,17 @@ Template.overview.events(
 
 	'keyup #key' : function(e) {
 		Session.set("overview_autoComplete", jQuery(e.target).val());
+		Session.set("lastActiveInput", "#key");
 	},
 
 	'keyup #value' : function(e) {
 		Session.set("overview_autoComplete", jQuery(e.target).val());
+		Session.set("lastActiveInput", "#value");
+	},
+	
+	'keyup .value-editor' : function(e) {
+		Session.set("overview_autoComplete", jQuery(e.target).val());
+		Session.set("lastActiveInput", "#" + e.target.id);
 	},
 
 	'blur .value-editor' : function(e) {
