@@ -5,6 +5,7 @@
     "accounts-ui-bootstrap-dropdown": {},
     "accounts-guest": {},
     "session-amplify": {},
-    "jquery-ui": {}
+    "jquery-ui": {},
+    "sharejs": {}
   }
 }
