@@ -16,10 +16,23 @@ Template.postSubmit.events({
                 throwError('Updating profile URL failed, reverting: ' + result);
             }
         });
-    }
-})
+    },
 
-Template.homePage.events({
+    'click #create-context': function(e) {
+        e.preventDefault();
+        var context = ($("#createContext").val());
+        contexts.push(context);
+        profileAdd('contexts', {})
+        Meteor.call("updateUserProfileUrl", url, function(error, result) {
+            if (result == "OK") {
+                SessionAmplify.set('myProfileUrl', url);
+                throwError('Success. Updated your profile URL to: ' + url);
+            } else {
+                $("input[name=myProfileUrl]").val(oldUrl);
+                throwError('Updating profile URL failed, reverting: ' + result);
+            }
+        });
+    },
 
     // Adding a new context. Attempt to add and report status. Always clear input box after.
     'keydown #subscribeToContextUrl': function(e) {
@@ -37,7 +50,7 @@ Template.homePage.events({
             $("#subscribeToContextUrl").val('');
         }
     }
-});
+})
 
 Template.postSubmit.helpers({
     myProfileUrl: function() {

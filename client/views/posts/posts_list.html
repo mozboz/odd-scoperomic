@@ -1,7 +1,8 @@
 <template name="postsList">
 
         {{#if posts.count}}
-            <div class="ui selection list">
+            <h4 class="ui header" style="margin: 0px;">Posts</h4>
+            <div class="ui selection list" style="margin-top: 0px;">
             {{#each posts}}
             {{> postItem}}
             {{/each}}
@@ -9,5 +10,16 @@
         {{else}}
             Empty, click Setup to proceed
         {{/if}}
+
+    {{#if posts.count}}
+    <h4 class="ui header" style="margin: 0px;">Dates</h4>
+    <div class="ui selection list" style="margin-top: 0px;">
+        {{#each posts}}
+        {{> postItem}}
+        {{/each}}
+    </div>
+    {{else}}
+    Empty, click Setup to proceed
+    {{/if}}
 
 </template>
