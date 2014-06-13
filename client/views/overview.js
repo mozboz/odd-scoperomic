@@ -1,25 +1,36 @@
-Template.overview.rendered = function () {
 
-	// make the entries draggable
-	jQuery(".value-editor-key-container").each(function (idx, elm) {
-		jQuery(elm).draggable({
-			helper: "clone"
-		});
+/*
+ * @todo: the save on blur feature for property values is problematic
+ * 		  in conjunction with the autocompletion.
+ * 		  Everytime the box looses focus because one clicks
+ * 		  on the autocomplete-entry, an incomplete version will be saved
+ * 		  because the input loses focus.
+ */
+
+
+var submitValues = function(obj) {
+
+	var key = jQuery("#key").val().trim();
+	var val = jQuery("#value").val().trim();
+
+	addOrChangeProperty(obj.id + "#" + obj.rev, key, val);
+
+	jQuery("#key").val("");
+	jQuery("#value").val("");
+
+	Router.go("overview", {
+		id: obj.id,
+		rev: obj.rev + 1
 	});
 
-	jQuery("#object-composer-container").droppable({
-		drop: function (event, ui) {
-			alert(jQuery(ui.draggable.get(0)).html());
-		}
-	});
+}
 
-	Deps.autorun(function () {
+Template.overview.rendered = function() {
 
-		var lastActiveInput = Session.get("lastActiveInput");
-		var selectedEntryOid = Session.get("use-autocomplete-entry");
-
-		if (typeof selectedEntryOid == "undefined")
-			return;
+		if (lastActiveInput == "#key")
+			jQuery("#value").focus();
+		else
+			jQuery(lastActiveInput).focus();
 
 		var oidParts = parseOid(selectedEntryOid);
 		var obj = loadObject(oidParts.id, oidParts.rev)
@@ -27,7 +38,6 @@ Template.overview.rendered = function () {
 		jQuery(lastActiveInput).val(obj.name);
 
 		Session.set("use-autocomplete-entry", undefined);
-	});
 
 };
 
@@ -38,15 +48,7 @@ Template.overview.events(
 	{
 		e.preventDefault();
 
-		var key = jQuery("#key").val().trim();
-		var val = jQuery("#value").val().trim();
-
-		addOrChangeProperty(this.obj.id + "#" + this.obj.rev, key, val);
-
-		Router.go("overview", {
-			id: this.obj.id,
-			rev: this.obj.rev + 1
-		});
+		submitValues(this.obj);
 	},
 
 	'keyup #key': function (e) {
@@ -54,9 +56,26 @@ Template.overview.events(
 		Session.set("lastActiveInput", "#key");
 	},
 
-	'keyup #value': function (e) {
-		Session.set("overview_autoComplete", jQuery(e.target).val());
+	'focus #key' : function(e) {
+		Session.set("lastActiveInput", "#key");
+	},
+
+
+	'keyup #value' : function(e) {
+		if (e.which == 13) {
+			submitValues(this.obj);
+		} else {
+			Session.set("overview_autoComplete", jQuery(e.target).val());
+			Session.set("lastActiveInput", "#value");
+		}
+	},
+
+	'focus #value' : function(e) {
 		Session.set("lastActiveInput", "#value");
+	},
+
+	'focus .value-editor' : function(e) {
+		Session.set("lastActiveInput", "#" + e.target.id);
 	},
 
 	'keyup .value-editor' : function(e) {
