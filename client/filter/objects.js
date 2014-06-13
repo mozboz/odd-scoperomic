@@ -1,4 +1,4 @@
-Template.home.helpers({
+Template.objects.helpers({
     objects: function () {
         return Objects.find({}, {
             "timestamp": "asc"
